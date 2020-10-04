@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-09-27T00:09:19.408878+00:00",
+  "timestamp": "2020-10-04T00:09:40.305951+00:00",
   "repo": "ietf-wg-add/draft-add-requirements",
   "labels": [
     {
@@ -106,9 +106,17 @@
       ],
       "body": "At the moment we only have R1.1 and R1.2.",
       "createdAt": "2020-09-03T16:39:35Z",
-      "updatedAt": "2020-09-03T16:39:35Z",
+      "updatedAt": "2020-10-02T01:33:32Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "JoGSal",
+          "authorAssociation": "NONE",
+          "body": "R1.3 There must be a mechanism for a user to signal to the client how to choose between equivalent and alternative Associated resolvers.",
+          "createdAt": "2020-10-02T01:33:31Z",
+          "updatedAt": "2020-10-02T01:33:31Z"
+        }
+      ]
     },
     {
       "number": 5,
