@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-10-04T00:09:40.305951+00:00",
+  "timestamp": "2020-10-18T00:10:30.221282+00:00",
   "repo": "ietf-wg-add/draft-add-requirements",
   "labels": [
     {
@@ -106,15 +106,15 @@
       ],
       "body": "At the moment we only have R1.1 and R1.2.",
       "createdAt": "2020-09-03T16:39:35Z",
-      "updatedAt": "2020-10-02T01:33:32Z",
+      "updatedAt": "2020-10-16T23:40:25Z",
       "closedAt": null,
       "comments": [
         {
           "author": "JoGSal",
           "authorAssociation": "NONE",
-          "body": "R1.3 There must be a mechanism for a user to signal to the client how to choose between equivalent and alternative Associated resolvers.",
+          "body": "R1.3 There must be a mechanism to authenticate the entity that provides the discovered encrypted DNS resolvers\r\nR1.4 There must be a mechanism for a user to signal to the client how to choose between equivalent and alternative resolvers. ",
           "createdAt": "2020-10-02T01:33:31Z",
-          "updatedAt": "2020-10-02T01:33:31Z"
+          "updatedAt": "2020-10-16T23:40:25Z"
         }
       ]
     },
@@ -196,7 +196,7 @@
       ],
       "body": "I\u2019m suggesting that the aspect of \u201cauthenticated\u201d be expanded, discussed, and explained as it does potentially have different notions in different readers perspectives.\r\n\r\nFor example some may say doing a DNSSEC validation of some sort is what is needed, or perhaps some form of PKI, or is it a TLS certificate validation, or mutual exchange?   It might even be something as basic as asking special DNS queries and validating the answers received against expectations.\r\n\r\nAnother slice would be authenticating the actual resolver chosen or is it authenticated at the more abstract \u201cservice\u201d provided by the operator of the resolver?\r\n\r\nThere is also the consideration of does the authentication means/level vary depending on different environmental threat levels?\r\n\r\nThe bottom line is there is a lot of meanings behind \u201cauthentication\u201d and what is being authenticated to declare and discuss as a requirement.\r\n\r\n-glenn\r\n\r\n_Originally posted by @gitnnelg in https://github.com/ietf-wg-add/draft-add-requirements/pull/2#issuecomment-680215555_",
       "createdAt": "2020-09-03T16:49:44Z",
-      "updatedAt": "2020-09-26T15:15:14Z",
+      "updatedAt": "2020-10-16T23:52:11Z",
       "closedAt": null,
       "comments": [
         {
@@ -212,6 +212,13 @@
           "body": "agree - _authentication_ can include mutual authentication",
           "createdAt": "2020-09-26T15:15:14Z",
           "updatedAt": "2020-09-26T15:15:14Z"
+        },
+        {
+          "author": "JoGSal",
+          "authorAssociation": "NONE",
+          "body": "+1 to different means/level depending on environment.\r\nI think mandatory should be validation of resolver designation through any of the 4 methods described in draft-pauly-add-resolver-discovery (validation using DNSSEC / PvD file / file on a well-known HTTPS URI based on zone apex / TLS certificates).\r\nThen the actual resolver chosen and their ownership over the encrypted services, similar to what's on [Google's policy](https://docs.google.com/document/d/128i2YTV2C7T6Gr3I-81zlQ-_Lprnsp24qzy_20Z1Psw/edit) , then client authentication for use-cases like the enterprise network\r\n",
+          "createdAt": "2020-10-16T23:52:11Z",
+          "updatedAt": "2020-10-16T23:52:11Z"
         }
       ]
     },
@@ -781,6 +788,54 @@
       "body": "Taking the definitions in context, one can assume all 3 defined resolvers refer to ones providing Encrypted DNS resolution but then the terms might need to be more explicit, i.e\r\n\r\nAssociated resolver: A resolver [providing connectivity over Encrypted DNS] operated by the same entity...\r\nEquivalent associated resolver: An associated resolver that provides [Encrypted] DNS responses...\r\nAlternative associated resolver: An associated resolver [using Encrypted transports] that serves different responses...",
       "createdAt": "2020-09-11T22:20:41Z",
       "updatedAt": "2020-09-11T22:20:41Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 28,
+      "id": "MDU6SXNzdWU3MjM1OTE1NDE=",
+      "title": "Section 3.2: Add to listed benefits",
+      "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/28",
+      "state": "OPEN",
+      "author": "JoGSal",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "This can provide several benefits:\r\n\r\n- Validate meaningful user choice where the client's preferred option is enforced through selection mechanisms.",
+      "createdAt": "2020-10-16T23:56:43Z",
+      "updatedAt": "2020-10-16T23:56:43Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 29,
+      "id": "MDU6SXNzdWU3MjM1OTI3MDM=",
+      "title": "Section 3.2: Add to Requirements",
+      "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/29",
+      "state": "OPEN",
+      "author": "JoGSal",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "- R5.1 If the same entity counts with encrypted services, the Selection mechanisms should default to them.\r\n- R5.2 If no equivalent resolvers are available from the same entity, a disclaimer should be provided to the user where their consent is requested in order to use alternative encrypted resolvers, as user understanding and meaningful choice are vital in this scenario.\r\n- R5.3 A set of rules and standards should be defined for the listing of available resolvers, such as confirming ownership over the encrypted DNS services (google's policy), and maintaining a minimum standard of data handling and management policies (mozilla's policy)\r\n",
+      "createdAt": "2020-10-17T00:01:42Z",
+      "updatedAt": "2020-10-17T00:01:42Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 30,
+      "id": "MDU6SXNzdWU3MjM1OTM2NDU=",
+      "title": "Section 5: Clarification",
+      "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/30",
+      "state": "OPEN",
+      "author": "JoGSal",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "The section says:\r\n\"attackers must not be able to: (...) Influence automatic discovery mechanisms such that a client uses one or more resolvers that are not otherwise involved with providing service to the client, such as: (...) a server that the client has manually configured.\"\r\n\r\nWhat is the precise implication for manually configured servers by the client?",
+      "createdAt": "2020-10-17T00:05:10Z",
+      "updatedAt": "2020-10-17T00:05:10Z",
       "closedAt": null,
       "comments": []
     }
