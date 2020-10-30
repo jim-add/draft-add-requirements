@@ -9,14 +9,34 @@
 <meta content="Tommy Pauly" name="author">
 <meta content="Christopher A. Wood" name="author">
 <meta content="Tirumaleswar Reddy" name="author">
+<meta content="Daniel Migault" name="author">
 <meta content="
-       Adaptive DNS Discovery is chartered to define mechanisms that allow clients to discover and select encrypted DNS resolvers.
-This document describes several use cases for discovering DNS resolvers that support encrypted transports,
-and lists requirements that any proposed discovery and selection mechanisms should address. 
+       Adaptive DNS Discovery is chartered to define mechanisms that allow clients to discover and select encrypted DNS
+resolvers. This document describes one common use case, that of discovering the encrypted DNS resolver that
+corresponds to the Do53 resolver offered by a network. It lists requirements that any proposed discovery and
+selection mechanisms should address. 
     " name="description">
-<meta content="xml2rfc 2.47.0" name="generator">
+<meta content="xml2rfc 3.2.1" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-box-add-requirements-00" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.2.1
+    Python 3.8.5
+    appdirs 1.4.4
+    ConfigArgParse 1.2.3
+    google-i18n-address 2.4.0
+    html5lib 1.1
+    intervaltree 3.0.2
+    Jinja2 2.11.2
+    kitchen 1.2.6
+    lxml 4.5.0
+    pycountry 19.8.18
+    pyflakes 2.1.1
+    PyYAML 5.3.1
+    requests 2.22.0
+    setuptools 45.2.0
+    six 1.14.0
+-->
 <link href="draft-add-requirements.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">@import url('https://martinthomson.github.io/i-d-template/fonts.css');
@@ -805,11 +825,11 @@ address div.right {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">ADDREQ</td>
-<td class="right">September 2020</td>
+<td class="right">October 2020</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Box, et al.</td>
-<td class="center">Expires 13 March 2021</td>
+<td class="center">Expires 3 May 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -822,12 +842,12 @@ address div.right {
 <dd class="internet-draft">draft-box-add-requirements-00</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2020-09-09" class="published">9 September 2020</time>
+<time datetime="2020-10-30" class="published">30 October 2020</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-03-13">13 March 2021</time></dd>
+<dd class="expires"><time datetime="2021-05-03">3 May 2021</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -846,15 +866,20 @@ address div.right {
       <div class="author-name">T. Reddy</div>
 <div class="org">McAfee</div>
 </div>
+<div class="author">
+      <div class="author-name">D. Migault</div>
+<div class="org">Ericsson</div>
+</div>
 </dd>
 </dl>
 </div>
 <h1 id="title">Requirements for Adaptive DNS Discovery</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">Adaptive DNS Discovery is chartered to define mechanisms that allow clients to discover and select encrypted DNS resolvers.
-This document describes several use cases for discovering DNS resolvers that support encrypted transports,
-and lists requirements that any proposed discovery and selection mechanisms should address.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">Adaptive DNS Discovery is chartered to define mechanisms that allow clients to discover and select encrypted DNS
+resolvers. This document describes one common use case, that of discovering the encrypted DNS resolver that
+corresponds to the Do53 resolver offered by a network. It lists requirements that any proposed discovery and
+selection mechanisms should address.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-discussion-venues">
@@ -883,7 +908,7 @@ and lists requirements that any proposed discovery and selection mechanisms shou
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 March 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 3 May 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -911,98 +936,76 @@ and lists requirements that any proposed discovery and selection mechanisms shou
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.1">
+<nav class="toc"><ul class="ulEmpty toc compact">
+<li class="ulEmpty toc compact" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.1.2.1">
-                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-requirements-language" class="xref">Requirements Language</a><a href="#section-toc.1-1.1.2.1.1" class="pilcrow">¶</a></p>
+<ul class="ulEmpty toc compact">
+<li class="ulEmpty toc compact" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-requirements-language" class="xref">Requirements language</a><a href="#section-toc.1-1.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.2">
+          <li class="ulEmpty toc compact" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-terminology" class="xref">Terminology</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-discovery-of-associated-res" class="xref">Discovery of associated resolvers</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-network-provisioned-resolve" class="xref">Network-provisioned resolvers</a><a href="#section-toc.1-1.3.2.1.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.3.2.1.2.1">
-                    <p id="section-toc.1-1.3.2.1.2.1.1"><a href="#section-3.1.1" class="xref">3.1.1</a>.  <a href="#name-unencrypted-forwarder" class="xref">Unencrypted forwarder</a><a href="#section-toc.1-1.3.2.1.2.1.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty toc compact" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-use-case-description" class="xref">Use case description</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
+<ul class="ulEmpty toc compact">
+<li class="ulEmpty toc compact" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-equivalence" class="xref">Equivalence</a><a href="#section-toc.1-1.3.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.1.2.2">
-                    <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="xref">3.1.2</a>.  <a href="#name-encrypted-forwarder" class="xref">Encrypted forwarder</a><a href="#section-toc.1-1.3.2.1.2.2.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty toc compact" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-verification-of-equivalence" class="xref">Verification of equivalence</a><a href="#section-toc.1-1.3.2.2.1" class="pilcrow">¶</a></p>
 </li>
-                </ul>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-client-selected-resolvers" class="xref">Client-selected resolvers</a><a href="#section-toc.1-1.3.2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-vpn-resolvers" class="xref">VPN resolvers</a><a href="#section-toc.1-1.3.2.3.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty toc compact" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-local-addressing" class="xref">Local addressing</a><a href="#section-toc.1-1.3.2.3.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-discovery-of-limited-domain" class="xref">Discovery of limited domain resolvers</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-discover-a-mapping-between-" class="xref">Discover a mapping between a locally-hosted domain and a resolver</a><a href="#section-toc.1-1.4.2.1.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1.2.1">
-                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="xref">4.1.1</a>.  <a href="#name-encrypted-resolvers-for-loc" class="xref">Encrypted resolvers for local or home content</a><a href="#section-toc.1-1.4.2.1.2.1.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty toc compact" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-network-identified-encrypte" class="xref">Network-identified encrypted resolvers</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1.2.2">
-                    <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="xref">4.1.2</a>.  <a href="#name-locally-cached-content" class="xref">Locally-cached content</a><a href="#section-toc.1-1.4.2.1.2.2.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1.2.3">
-                    <p id="section-toc.1-1.4.2.1.2.3.1"><a href="#section-4.1.3" class="xref">4.1.3</a>.  <a href="#name-private-enterprise-names" class="xref">Private enterprise names</a><a href="#section-toc.1-1.4.2.1.2.3.1" class="pilcrow">¶</a></p>
-</li>
-                </ul>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-encrypted-resolvers-for-con" class="xref">Encrypted resolvers for content providers</a><a href="#section-toc.1-1.4.2.2.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty toc compact" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-resolver-identified-encrypt" class="xref">Resolver-identified encrypted resolvers</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
+<ul class="ulEmpty toc compact">
+<li class="ulEmpty toc compact" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-opportunistic-discovery-by-" class="xref">Opportunistic discovery by well-known port</a><a href="#section-toc.1-1.5.2.1.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-privacy-and-security-requir" class="xref">Privacy and security requirements</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-on-opportunistic-encryption" class="xref">On opportunistic encryption</a><a href="#section-toc.1-1.5.2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-handling-exceptions-and-fai" class="xref">Handling exceptions and failures</a><a href="#section-toc.1-1.5.2.2.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty toc compact" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-privacy-and-security-requir" class="xref">Privacy and security requirements</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
+<ul class="ulEmpty toc compact">
+<li class="ulEmpty toc compact" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-handling-exceptions-and-fai" class="xref">Handling exceptions and failures</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-requirements-summary" class="xref">Requirements Summary</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty toc compact" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-statement-of-requirements" class="xref">Statement of Requirements</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty toc compact" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty toc compact" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-references" class="xref">References</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.9.2.1">
-                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="xref">9.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.9.2.1.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty toc compact" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-references" class="xref">References</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
+<ul class="ulEmpty toc compact">
+<li class="ulEmpty toc compact" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="xref">10.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.10.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.9.2.2">
-                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="xref">9.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a><a href="#section-toc.1-1.9.2.2.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty toc compact" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="xref">10.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a><a href="#section-toc.1-1.10.2.2.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-acknowledgments" class="xref">Acknowledgments</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty toc compact" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-acknowledgments" class="xref">Acknowledgments</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty toc compact" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </nav>
@@ -1013,27 +1016,20 @@ and lists requirements that any proposed discovery and selection mechanisms shou
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Several protocols for protecting DNS traffic with encrypted transports have been defined,
-such as DNS-over-TLS (DoT) <span>[<a href="#RFC7858" class="xref">RFC7858</a>]</span> and DNS-over-HTTPS (DoH) <span>[<a href="#RFC8484" class="xref">RFC8484</a>]</span>.
-Encrypted DNS can provide many security and privacy benefits for network clients.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">While it is possible for clients to statically configure encrypted DNS resolvers to use, dynamic
-discovery and provisioning of encrypted resolvers can expand the usefulness and
-applicability of encrypted DNS to many more use cases.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">The Adaptive DNS Discovery (ADD) Working Group is chartered to define mechanisms that allow clients to automatically discover
-and select encrypted DNS resolvers in a wide variety of network environments. This document describes several use cases
-for discovering DNS resolvers that support encrypted transports, and lists requirements that any proposed discovery and
-selection mechanisms should address. They can do this either by providing a solution, or by explicitly stating why it
-is not in scope.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">Use cases are described between <a href="#associated" class="xref">Section 3</a> and <a href="#cdn-content" class="xref">Section 4.2</a>.
-Each use case contains a narrative and a set of requirements that apply in that case.
-There are additional common requirements in <a href="#priv-sec" class="xref">Section 5</a>.
-Each requirement is identified as "Ra.b" where a is the group number and b is the number within that group.
-Both a and b are integers starting with 1.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">A summary of all requirements in listed in <a href="#requirements-summary" class="xref">Section 6</a>.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-1">Several protocols for protecting DNS traffic with encrypted transports have been defined, such as DNS-over-TLS
+(DoT) <span>[<a href="#RFC7858" class="xref">RFC7858</a>]</span> and DNS-over-HTTPS (DoH) <span>[<a href="#RFC8484" class="xref">RFC8484</a>]</span>. Encrypted DNS can provide many security and privacy
+benefits for network clients.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">While it is possible for clients to statically configure encrypted DNS resolvers to use, dynamic discovery and
+provisioning of encrypted resolvers can expand the usefulness and applicability of encrypted DNS to many more use cases.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">The Adaptive DNS Discovery (ADD) Working Group is chartered to define mechanisms that allow clients to automatically
+discover and select encrypted DNS resolvers in a wide variety of network environments.
+This document describes one common use case, that of discovering the encrypted DNS resolver that corresponds to
+the Do53 resolver offered by a network. It lists requirements that any proposed discovery and selection mechanisms should address.
+They can do this either by providing a solution, or by explicitly stating why it is not in scope.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <div id="requirements-language">
 <section id="section-1.1">
         <h3 id="name-requirements-language">
-<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-requirements-language" class="section-name selfRef">Requirements Language</a>
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-requirements-language" class="section-name selfRef">Requirements language</a>
         </h3>
 <p id="section-1.1-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this
@@ -1051,31 +1047,208 @@ when, and only when, they appear in all capitals, as shown here.<a href="#sectio
 <p id="section-2-1">This document makes use of the following terms.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">Encrypted DNS: DNS-over-HTTPS <span>[<a href="#RFC8484" class="xref">RFC8484</a>]</span>, DNS-over-TLS <span>[<a href="#RFC7858" class="xref">RFC7858</a>]</span>, or any other encrypted DNS technology that
 the IETF may publish, such as DNS-over-QUIC <span>[<a href="#I-D.ietf-dprive-dnsoquic" class="xref">I-D.ietf-dprive-dnsoquic</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
-<p id="section-2-3">Associated resolver: A resolver operated by the same entity that provides the resolver the client started with. See <a href="#associated" class="xref">Section 3</a>.<a href="#section-2-3" class="pilcrow">¶</a></p>
-<p id="section-2-4">Equivalent associated resolver: An associated resolver that provides DNS responses that are identical to the ones served by the original unencrypted resolver.<a href="#section-2-4" class="pilcrow">¶</a></p>
-<p id="section-2-5">Alternative associated resolver: An associated resolver that serves different responses to some queries; see <a href="#associated" class="xref">Section 3</a> for examples.<a href="#section-2-5" class="pilcrow">¶</a></p>
+<p id="section-2-3">Do53: Unencrypted DNS over UDP port 53, or TCP port 53 <span>[<a href="#RFC1035" class="xref">RFC1035</a>]</span>.<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-4">Equivalent: See <a href="#equivalence" class="xref">Section 3.1</a>.<a href="#section-2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="associated">
+<div id="use-case-description">
 <section id="section-3">
-      <h2 id="name-discovery-of-associated-res">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-discovery-of-associated-res" class="section-name selfRef">Discovery of associated resolvers</a>
+      <h2 id="name-use-case-description">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-use-case-description" class="section-name selfRef">Use case description</a>
       </h2>
-<p id="section-3-1">A client may begin with information about unencrypted resolvers from the attached networks (<a href="#local-network" class="xref">Section 3.1</a>),
-and/or unencrypted resolvers known from configuration (<a href="#client-selected" class="xref">Section 3.2</a>).
-This information may be used to then discover one or more associated encrypted resolvers.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">Associated resolvers are defined as resolvers operated by the same entity that provides the resolver the client started with.
-Such associated resolvers may come in two forms:<a href="#section-3-2" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3-3">
-        <li id="section-3-3.1">Equivalent - these provide DNS responses that are identical to the ones served by the unencrypted resolver.<a href="#section-3-3.1" class="pilcrow">¶</a>
+<p id="section-3-1">It is often the case that a client possesses no specific configuration for how to operate DNS, and at some point
+joins a network that it has no previous knowledge about. In such a case the usual existing behaviour is to
+dynamically discover the network's recommended Do53 resolver and use it. This long-standing practice works in
+nearly all networks, but presents a number of privacy and security risks that were the motivation for the development
+of encrypted DNS.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">The network's recommended unencrypted resolver may have a number of properties that differ from a generic resolver.
+It may be able to answer names that are not known globally, it may exclude some names (for positive or negative
+reasons), and it may provide address answers that have improved proximity. In this use case it is assumed that
+the user who chose to join this network would also like to make use of these properties of the network's unencrypted resolver,
+at least some of the time. However they would like to use an encrypted DNS protocol rather than Do53.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-3">Using an encrypted and authenticated resolver that is equivalent to the one provisioned by the network
+can provide several benefits that are not possible if only unencrypted DNS is used:<a href="#section-3-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3-4.1">Prevent other devices on the network from observing client DNS messages<a href="#section-3-4.1" class="pilcrow">¶</a>
 </li>
-        <li id="section-3-3.2">Alternative - these serve different responses to some queries. For example one entity may offer a set of encrypted resolvers with different levels of filtering (none, just malware, or malware &amp; adult content), or different proximity (local or central).<a href="#section-3-3.2" class="pilcrow">¶</a>
+        <li class="normal" id="section-3-4.2">Authenticate that the DNS resolver is the correct one<a href="#section-3-4.2" class="pilcrow">¶</a>
 </li>
-      </ol>
-<p id="section-3-4">The client may wish to select an equivalent associated resolver, or select one of the alternatives.<a href="#section-3-4" class="pilcrow">¶</a></p>
-<p id="section-3-5">Designs for resolver upgrade mechanisms can either add new parameters to existing provisioning mechanisms
-(for example, adding necessary information to use DoT or DoH to options in DHCP, RAs, or IKEv2) or else provide a way
-to communicate with a provisioned unencrypted DNS resolver and discover the associated encrypted DNS resolvers.<a href="#section-3-5" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-3-4.3">Verify that answers come from the selected DNS resolver<a href="#section-3-4.3" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="section-3-5">To meet this case there should be a means by which the client can learn how to contact an encrypted DNS resolver
+that provides essentially the same responses as the ones served by the network's recommended unencrypted resolver.
+It is not a requirement that these two resolvers are the same physical or logical machine. Often they will be, but they
+could equally be separated, perhaps by hundreds of miles. However it is deployed, the key is that they are equivalent.<a href="#section-3-5" class="pilcrow">¶</a></p>
+<div id="equivalence">
+<section id="section-3.1">
+        <h3 id="name-equivalence">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-equivalence" class="section-name selfRef">Equivalence</a>
+        </h3>
+<p id="section-3.1-1">Equivalence is the property that a specific Encrypted DNS resolver provides the same answers, or similar answers
+with the <em>same</em> resulting behavior, as those of the locally recommended Do53 resolver. This implies a necessary precondition
+is that they are operated by the same administrative domain. This administrator has the task of keeping them aligned.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">There are two possible ways to claim equivalence.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1-3.1">The local network can claim that one or more encrypted DNS resolvers are equivalent to the Do53 resolver it has offered. This is known as network-identified.<a href="#section-3.1-3.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-3.1-3.2">During communication with the (generally unencrypted) resolver, this resolver can claim that one or more encrypted DNS resolvers are equivalent. This is known as resolver-identified.<a href="#section-3.1-3.2" class="pilcrow">¶</a>
+</li>
+        </ul>
+<p id="section-3.1-4">The former is preferred since it comes from the same source of information, and removes the need to talk to the Do53 resolver
+at all. However it cannot be the sole mechanism, at least for several years, since there is a large installed base of local
+network equipment that is difficult to upgrade with new features. Hence the second mechanism must support being able to
+announce an equivalent resolver using only existing widely-deployed DNS features.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="verification-of-equivalence">
+<section id="section-3.2">
+        <h3 id="name-verification-of-equivalence">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-verification-of-equivalence" class="section-name selfRef">Verification of equivalence</a>
+        </h3>
+<p id="section-3.2-1">For resolver-identified claims, it is desirable that there is a method of verifying that the claimed-equivalent Encrypted DNS resolver is operated by the same administrative domain as the Do53 resolver. In the subset of cases
+where the two operate at the same IP address, this is not required.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">For network-identified encrypted resolvers, at present the discovery process needs to accept the client's
+existing trust of unauthenticated network information, assume that it is valid, and proceed from there.
+When better methods of authenticating the network are available, this can be revisited.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="local-addressing">
+<section id="section-3.3">
+        <h3 id="name-local-addressing">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-local-addressing" class="section-name selfRef">Local addressing</a>
+        </h3>
+<p id="section-3.3-1">Many networks offer a Do53 resolver on an address that is not globally meaningful, e.g. <span>[<a href="#RFC1918" class="xref">RFC1918</a>]</span>, link-local
+or unique local addresses. To support the discovery of Encrypted DNS in these environments, a means is needed for
+the discovery process to work from a locally-addressed Do53 resolver to an Encrypted DNS resolver that is accessible
+either at the same (local) address, or at a different global address. Both options need to be supported.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">In either case the resolver would offer a TLS certificate proving ownership of a name. This name should be
+meaningful to the end user, conveying the identity of the resolver operator, but given the lack of network
+authentication it does not currently seem possible to mandate a requirement that the name has to match anything
+else the client knows. It is not generally possible to obtain a TLS certificate proving ownership of a locally-scoped
+IP address, so discovery should not require this.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="network-identified-encrypted-resolvers">
+<section id="section-4">
+      <h2 id="name-network-identified-encrypte">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-network-identified-encrypte" class="section-name selfRef">Network-identified encrypted resolvers</a>
+      </h2>
+<p id="section-4-1">DNS servers are often provisioned by a network as part of DHCP options <span>[<a href="#RFC2132" class="xref">RFC2132</a>]</span>,
+IPv6 Router Advertisement (RA) options <span>[<a href="#RFC8106" class="xref">RFC8106</a>]</span>, Point-to-Point Protocol (PPP) <span>[<a href="#RFC1877" class="xref">RFC1877</a>]</span>, or
+3GPP Protocol Configuration Options (TS24.008). Historically this is usually one or more Do53 resolver IP addresses,
+to be used for traditional unencrypted DNS.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">A solution is required that enhances the set of information delivered to include details of one or more
+equivalent encrypted DNS resolvers.<a href="#section-4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="resolver-identified-encrypted-resolvers">
+<section id="section-5">
+      <h2 id="name-resolver-identified-encrypt">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-resolver-identified-encrypt" class="section-name selfRef">Resolver-identified encrypted resolvers</a>
+      </h2>
+<p id="section-5-1">To support cases where the network is unable to identify an encrypted resolver, it should be possible to learn
+the details of one or more equivalent encrypted DNS resolvers by communicating with the network-recommended
+unencrypted Do53 resolver. This should involve an exchange that uses standard DNS messages that can be
+handled, or forwarded, by existing deployed software.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">It is frequently the case that Do53 resolvers announced by networks are difficult to upgrade to support encrypted operation.
+In such cases it is likely that the only option for encrypted operation is to refer to a separate globally-addressed
+encrypted DNS resolver. It is incumbent on the operator of the unencrypted local resolver to ensure that this referral
+is equivalent.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">If the local resolver has been upgraded to support encrypted DNS, the client may not initially be aware that its local resolver
+supports it. Discovering this may require communication with the local resolver, or an upstream resolver, over Do53.
+Once discovered, the local encrypted resolver may be selected by the client, gaining the benefits of encryption
+while retaining the benefits of a local caching resolver with knowledge of the local topology.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-4">An additional benefit of using a local resolver occurs with IoT devices. A common usage pattern for such devices
+is for it to "call home" to a service that resides on the public Internet, where that service is referenced through a
+domain name. As discussed in Manufacturer Usage Description Specification <span>[<a href="#RFC8520" class="xref">RFC8520</a>]</span>, because these devices
+tend to require access to very few sites, all other access should be considered suspect. However, if the query
+is not accessible for inspection, it becomes quite difficult for the infrastructure to suspect anything.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<div id="opportunistic-discovery-by-well-known-port">
+<section id="section-5.1">
+        <h3 id="name-opportunistic-discovery-by-">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-opportunistic-discovery-by-" class="section-name selfRef">Opportunistic discovery by well-known port</a>
+        </h3>
+<p id="section-5.1-1">Some encrypted DNS protocols (DNS-over-TLS <span>[<a href="#RFC7858" class="xref">RFC7858</a>]</span> and DNS-over-QUIC <span>[<a href="#I-D.ietf-dprive-dnsoquic" class="xref">I-D.ietf-dprive-dnsoquic</a>]</span>) already
+support automatic discovery by probing the well-known port at the same IP address as the unencrypted resolver.
+This could form part of the solution for upgrading to an encrypted local resolver, but is not a complete solution.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="priv-sec">
+<section id="section-6">
+      <h2 id="name-privacy-and-security-requir">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-privacy-and-security-requir" class="section-name selfRef">Privacy and security requirements</a>
+      </h2>
+<p id="section-6-1">Encrypted (and authenticated) DNS improves the privacy and security of DNS queries and answers in the presence of malicious
+attackers. Such attackers are assumed to interfere with or otherwise impede DNS traffic and corresponding
+discovery mechanisms. They may be on-path or off-path between the client and entities with which the client
+communicates <span>[<a href="#RFC3552" class="xref">RFC3552</a>]</span>. These attackers can inject, tamper, or otherwise interfere with traffic as needed.
+Given these capabilities, an attacker may have a variety of goals, including, though not limited to:<a href="#section-6-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6-2.1">Monitor and profile clients by observing unencrypted DNS traffic<a href="#section-6-2.1" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-6-2.2">Modify unencrypted DNS traffic to filter or augment the user experience<a href="#section-6-2.2" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-6-2.3">Block encrypted DNS<a href="#section-6-2.3" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="section-6-3">In general clients cannot assume that their network does not have such an attacker unless given some means of authenticating
+or otherwise trusting the communication with their DNS resolver.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">Given this type of attacker, resolver discovery mechanisms must be designed carefully to not worsen a client's security or
+privacy posture. In particular, attackers under consideration must not be able to:<a href="#section-6-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6-5.1">Redirect secure DNS traffic to themselves when they would not otherwise handle DNS traffic.<a href="#section-6-5.1" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-6-5.2">Override or interfere with the resolver preferences of a user or administrator.<a href="#section-6-5.2" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-6-5.3">Cause clients to use a discovered resolver which has no authenticated delegation from a client-known entity.<a href="#section-6-5.3" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-6-5.4">Influence automatic discovery mechanisms such that a client uses one or more resolvers that are not
+otherwise involved with providing service to the client, such as: a network provider, a VPN server, a
+content provider being accessed, or a server that the client has manually configured.<a href="#section-6-5.4" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="section-6-6">When discovering DNS resolvers on a local network, clients have no mechanism to distinguish between cases 
+where an active attacker with the above capabilities is interfering with discovery, and situations wherein 
+the network has no encrypted resolver. Absent such a mechanism, an attacker can always succeed in these
+goals. Therefore, in such circumstances, viable solutions for local DNS resolver discovery should consider 
+weaker attackers, such as those with only passive eavesdropping capabilities. It is unknown whether such
+relaxations represent a realistic attacker in practice. Thus, local discovery solutions designed around
+this threat model may have limited value.<a href="#section-6-6" class="pilcrow">¶</a></p>
+<p id="section-6-7">Beyond these requirements, standards describing resolver discovery mechanisms must not place any requirements
+on clients to select particular resolvers over others.<a href="#section-6-7" class="pilcrow">¶</a></p>
+<div id="handling-exceptions-and-failures">
+<section id="section-6.1">
+        <h3 id="name-handling-exceptions-and-fai">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-handling-exceptions-and-fai" class="section-name selfRef">Handling exceptions and failures</a>
+        </h3>
+<p id="section-6.1-1">Even with encrypted DNS resolver discovery in place, clients must be prepared to handle certain scenarios where encrypted DNS
+cannot be used. In these scenarios, clients must consider if it is appropriate to fail open by sending the DNS queries without
+encryption, fail closed by not doing so, or presenting a choice to a user or administrator. The exact behavior is a
+local client policy decision.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1-2">Some networks that use Captive Portals will not allow any Internet connectivity until a client has interacted with the portal
+<span>[<a href="#I-D.ietf-capport-architecture" class="xref">I-D.ietf-capport-architecture</a>]</span>. If these networks do not use encrypted DNS for their own resolution, a client will need to
+perform unencrypted DNS queries in order to get out of captivity. Many operating systems have specific client code responsible
+for detecting and interacting with Captive Portals; these system components may be good candidates for failing open, since they
+do not generally represent user traffic.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.1-3">Other networks may not allow any use of encrypted DNS, or any use of encrypted DNS to resolvers other than a network-provisioned
+resolver. Clients should not silently fail open in these cases, but if these networks are trusted by or administered by the user,
+the user may want to specifically follow the network's DNS policy instead of what the client would do on an unknown or untrusted
+network.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="requirements-summary">
+<section id="section-7">
+      <h2 id="name-statement-of-requirements">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-statement-of-requirements" class="section-name selfRef">Statement of Requirements</a>
+      </h2>
+<p id="section-7-1">This section lists requirements that flow from the above sections.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <table class="center" id="table-1">
         <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
 <thead>
@@ -1087,503 +1260,135 @@ to communicate with a provisioned unencrypted DNS resolver and discover the asso
         <tbody>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">R1.1</td>
-            <td class="text-left" rowspan="1" colspan="1">There must be a mechanism for a client to learn the set of encrypted resolvers that are associated with an unencrypted resolver.</td>
+            <td class="text-left" rowspan="1" colspan="1">Discovery MUST provide a client the ability to learn the set of, or absence of, equivalent resolvers from any instance of a resolver.</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">R1.2</td>
-            <td class="text-left" rowspan="1" colspan="1">Discovery must be possible even when the IP address of the encrypted resolver is only valid locally.</td>
-          </tr>
-        </tbody>
-      </table>
-<div id="local-network">
-<section id="section-3.1">
-        <h3 id="name-network-provisioned-resolve">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-network-provisioned-resolve" class="section-name selfRef">Network-provisioned resolvers</a>
-        </h3>
-<p id="section-3.1-1">DNS servers are often provisioned by a network as part of DHCP options <span>[<a href="#RFC2132" class="xref">RFC2132</a>]</span>,
-IPv6 Router Advertisement (RA) options <span>[<a href="#RFC8106" class="xref">RFC8106</a>]</span>, Point-to-Point Protocol (PPP) <span>[<a href="#RFC1877" class="xref">RFC1877</a>]</span>,
-3GPP Protocol Configuration Options, or another mechanism. Historically this is usually one or
-more DNS resolver IP addresses, to be used for traditional unencrypted DNS. However it could also
-be a richer set of information.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">Using an encrypted and authenticated resolver that is associated to the one provisioned by the network
-can provide several benefits that are not possible if only unencrypted DNS is used:<a href="#section-3.1-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3.1-3.1">Prevent other devices on the network from observing client DNS messages<a href="#section-3.1-3.1" class="pilcrow">¶</a>
-</li>
-          <li class="normal" id="section-3.1-3.2">Verify that answers come from the selected DNS resolver<a href="#section-3.1-3.2" class="pilcrow">¶</a>
-</li>
-          <li class="normal" id="section-3.1-3.3">Authenticate that the DNS resolver is the one provisioned by the network<a href="#section-3.1-3.3" class="pilcrow">¶</a>
-</li>
-        </ul>
-<p id="section-3.1-4">Frequently, network-provisioned resolvers are forwarders running on a local router. The discovered
-encrypted resolvers in these cases may either be local forwarders themselves, or an associated
-resolver that is in the network (thus bypassing the router's DNS forwarder).<a href="#section-3.1-4" class="pilcrow">¶</a></p>
-<table class="center" id="table-2">
-          <caption><a href="#table-2" class="selfRef">Table 2</a></caption>
-<thead>
-            <tr>
-              <th class="text-left" rowspan="1" colspan="1">Requirement</th>
-              <th class="text-left" rowspan="1" colspan="1">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-left" rowspan="1" colspan="1">R2.1</td>
-              <td class="text-left" rowspan="1" colspan="1">Example requirement</td>
-            </tr>
-          </tbody>
-        </table>
-<div id="unencrypted-forwarder">
-<section id="section-3.1.1">
-          <h4 id="name-unencrypted-forwarder">
-<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-unencrypted-forwarder" class="section-name selfRef">Unencrypted forwarder</a>
-          </h4>
-<p id="section-3.1.1-1">If the resolver announced by the network is a classic unencrypted forwarder, it is frequently the case that such
-forwarders are difficult to upgrade to support encrypted operation. In such cases it is useful for the resolver
-provider to be able to declare which encrypted resolvers they provide, and for the client to be able to discover
-them. If the client wishes to, it can then use one of those resolvers and bypass the local forwarder.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
-<table class="center" id="table-3">
-            <caption><a href="#table-3" class="selfRef">Table 3</a></caption>
-<thead>
-              <tr>
-                <th class="text-left" rowspan="1" colspan="1">Requirement</th>
-                <th class="text-left" rowspan="1" colspan="1">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">R3.1</td>
-                <td class="text-left" rowspan="1" colspan="1">Example requirement</td>
-              </tr>
-            </tbody>
-          </table>
-</section>
-</div>
-<div id="encrypted-forwarder">
-<section id="section-3.1.2">
-          <h4 id="name-encrypted-forwarder">
-<a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-encrypted-forwarder" class="section-name selfRef">Encrypted forwarder</a>
-          </h4>
-<p id="section-3.1.2-1">If a subset of local resolvers supports encrypted DNS, the client may not initially be aware that its local resolver
-supports it. Discovering this may require communication with the local resolver, or an upstream resolver, over an
-unencrypted transport. Once discovered, the local encrypted forwarder may be selected by the client, gaining the
-benefits of encryption while retaining the benefits of a local caching forwarder with knowledge of the local topology.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.1.2-2">Another benefit occurs with IoT devices. A common usage pattern for such devices is for it to "call home"
-to a service that resides on the public Internet, where that service is referenced through a domain name
-(A or AAAA record). As discussed in Manufacturer Usage Description Specification <span>[<a href="#RFC8520" class="xref">RFC8520</a>]</span>, because these devices
-tend to require access to very few sites, all other access should be considered suspect. However, if the query
-is not accessible for inspection, it becomes quite difficult for the infrastructure to suspect anything.<a href="#section-3.1.2-2" class="pilcrow">¶</a></p>
-<table class="center" id="table-4">
-            <caption><a href="#table-4" class="selfRef">Table 4</a></caption>
-<thead>
-              <tr>
-                <th class="text-left" rowspan="1" colspan="1">Requirement</th>
-                <th class="text-left" rowspan="1" colspan="1">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">R4.1</td>
-                <td class="text-left" rowspan="1" colspan="1">Example requirement</td>
-              </tr>
-            </tbody>
-          </table>
-</section>
-</div>
-</section>
-</div>
-<div id="client-selected">
-<section id="section-3.2">
-        <h3 id="name-client-selected-resolvers">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-client-selected-resolvers" class="section-name selfRef">Client-selected resolvers</a>
-        </h3>
-<p id="section-3.2-1">Client devices often allow the device administrator to select a specific DNS resolver to use
-on certain networks, or on all networks. Historically, this selection was specified only with an
-IP address.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">Discovering which equivalent encrypted resolvers are offered by the same entity allows the client
-to "upgrade" connections to use encrypted DNS.
-This can provide several benefits:<a href="#section-3.2-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3.2-3.1">Prevent devices along the network path to the selected resolver from observing client DNS messages<a href="#section-3.2-3.1" class="pilcrow">¶</a>
-</li>
-          <li class="normal" id="section-3.2-3.2">Verify that answers come from the selected DNS resolver<a href="#section-3.2-3.2" class="pilcrow">¶</a>
-</li>
-          <li class="normal" id="section-3.2-3.3">Authenticate that the DNS resolver is the one selected by the client<a href="#section-3.2-3.3" class="pilcrow">¶</a>
-</li>
-        </ul>
-<p id="section-3.2-4">In doing so it is critical that the new resolver is an equivalent resolver. Switching to a non-equivalent
-alternative resolver would break the expectation of the user who previously selected that resolver.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
-<table class="center" id="table-5">
-          <caption><a href="#table-5" class="selfRef">Table 5</a></caption>
-<thead>
-            <tr>
-              <th class="text-left" rowspan="1" colspan="1">Requirement</th>
-              <th class="text-left" rowspan="1" colspan="1">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-left" rowspan="1" colspan="1">R5.1</td>
-              <td class="text-left" rowspan="1" colspan="1">Example requirement</td>
-            </tr>
-          </tbody>
-        </table>
-</section>
-</div>
-<div id="vpn">
-<section id="section-3.3">
-        <h3 id="name-vpn-resolvers">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-vpn-resolvers" class="section-name selfRef">VPN resolvers</a>
-        </h3>
-<p id="section-3.3-1">Virtual Private Networks (VPNs) also can provision DNS resolvers. In addition to being able to use
-DHCP or RAs, VPNs can provision DNS information in an explicit configuration message. For example,
-IKEv2 can provision DNS servers using Configuration Attributes <span>[<a href="#RFC7296" class="xref">RFC7296</a>]</span>.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.3-2">VPNs can also configure Split DNS rules to limit the use of the configured resolvers to specific domain
-names <span>[<a href="#RFC8598" class="xref">RFC8598</a>]</span>.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.3-3">Discovering an encrypted resolver that is provisioned by a VPN can provide the same benefits
-as doing so for a local network, but applied to the private network. When using Split DNS, it becomes
-possible to use one encrypted resolver for private domains, and another for other domains.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
-<table class="center" id="table-6">
-          <caption><a href="#table-6" class="selfRef">Table 6</a></caption>
-<thead>
-            <tr>
-              <th class="text-left" rowspan="1" colspan="1">Requirement</th>
-              <th class="text-left" rowspan="1" colspan="1">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-left" rowspan="1" colspan="1">R6.1</td>
-              <td class="text-left" rowspan="1" colspan="1">Example requirement</td>
-            </tr>
-          </tbody>
-        </table>
-</section>
-</div>
-</section>
-</div>
-<div id="discovery-of-limited-domain-resolvers">
-<section id="section-4">
-      <h2 id="name-discovery-of-limited-domain">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-discovery-of-limited-domain" class="section-name selfRef">Discovery of limited domain resolvers</a>
-      </h2>
-<p id="section-4-1">Similar to how VPN DNS configurations can use Split DNS for private names, other network environments
-can support resolution of names that are specific to the local environment. For example, an enterprise-managed
-Wi-Fi network might be able to access both the Internet and a private intranet. In such a scenario, the private
-domains managed by the enterprise might only be resolvable using a specific DNS resolver.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">Discovering an encrypted resolver for a subset of names allows a client to perform Split DNS while maintaining
-the benefits of encrypted DNS. For example, a client could use a client-selected encrypted resolver for public
-domains, but use a different encrypted resolver for enterprise-private domains.<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">Such domain-specific resolver discovery mechanisms additionally need to provide some information about
-the applicability and capabilities of encrypted resolvers. This information can either be provisioned or
-can be discovered based on clients actively trying to access content.<a href="#section-4-3" class="pilcrow">¶</a></p>
-<table class="center" id="table-7">
-        <caption><a href="#table-7" class="selfRef">Table 7</a></caption>
-<thead>
-          <tr>
-            <th class="text-left" rowspan="1" colspan="1">Requirement</th>
-            <th class="text-left" rowspan="1" colspan="1">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">R7.1</td>
-            <td class="text-left" rowspan="1" colspan="1">Example requirement</td>
-          </tr>
-        </tbody>
-      </table>
-<div id="discover-a-mapping-between-a-locally-hosted-domain-and-a-resolver">
-<section id="section-4.1">
-        <h3 id="name-discover-a-mapping-between-">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-discover-a-mapping-between-" class="section-name selfRef">Discover a mapping between a locally-hosted domain and a resolver</a>
-        </h3>
-<p id="section-4.1-1">Narrative required.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<table class="center" id="table-8">
-          <caption><a href="#table-8" class="selfRef">Table 8</a></caption>
-<thead>
-            <tr>
-              <th class="text-left" rowspan="1" colspan="1">Requirement</th>
-              <th class="text-left" rowspan="1" colspan="1">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-left" rowspan="1" colspan="1">R8.1</td>
-              <td class="text-left" rowspan="1" colspan="1">Example requirement</td>
-            </tr>
-          </tbody>
-        </table>
-<div id="local-content">
-<section id="section-4.1.1">
-          <h4 id="name-encrypted-resolvers-for-loc">
-<a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-encrypted-resolvers-for-loc" class="section-name selfRef">Encrypted resolvers for local or home content</a>
-          </h4>
-<p id="section-4.1.1-1">Accessing locally-hosted content can require the use of a specific resolver. For example, captive networks
-or networks with walled-garden content like media on airplane Wi-Fi networks can rely on using a
-resolver hosted on the local network.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.1-2">In cases where a client is using an encrypted resolver provisioned by a network, and that encrypted resolver
-is able to resolve names of local content, this can fall into the use case described in <a href="#local-network" class="xref">Section 3.1</a>. However,
-it might be necessary to discover a local encrypted resolver along with specific domains if:<a href="#section-4.1.1-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-4.1.1-3.1">the network-provisioned encrypted resolver is not able to resolve local-only names, or<a href="#section-4.1.1-3.1" class="pilcrow">¶</a>
-</li>
-            <li class="normal" id="section-4.1.1-3.2">the client has a more-preferred encrypted resolver for generic traffic, and would otherwise not be able to access local content<a href="#section-4.1.1-3.2" class="pilcrow">¶</a>
-</li>
-          </ul>
-<p id="section-4.1.1-4">The first point can occur in a hybrid deployment, e.g. when the local resolver is unencrypted but a central one is encrypted.
-Clients choosing the encrypted resolver for most queries will need to be advised to refer to the local one for some names.<a href="#section-4.1.1-4" class="pilcrow">¶</a></p>
-<p id="section-4.1.1-5">This case also include accessing content specific to a home network.<a href="#section-4.1.1-5" class="pilcrow">¶</a></p>
-<table class="center" id="table-9">
-            <caption><a href="#table-9" class="selfRef">Table 9</a></caption>
-<thead>
-              <tr>
-                <th class="text-left" rowspan="1" colspan="1">Requirement</th>
-                <th class="text-left" rowspan="1" colspan="1">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">R9.1</td>
-                <td class="text-left" rowspan="1" colspan="1">Example requirement</td>
-              </tr>
-            </tbody>
-          </table>
-</section>
-</div>
-<div id="locally-cached-content">
-<section id="section-4.1.2">
-          <h4 id="name-locally-cached-content">
-<a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-locally-cached-content" class="section-name selfRef">Locally-cached content</a>
-          </h4>
-<p id="section-4.1.2-1">Narrative required.<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
-<table class="center" id="table-10">
-            <caption><a href="#table-10" class="selfRef">Table 10</a></caption>
-<thead>
-              <tr>
-                <th class="text-left" rowspan="1" colspan="1">Requirement</th>
-                <th class="text-left" rowspan="1" colspan="1">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">R10.1</td>
-                <td class="text-left" rowspan="1" colspan="1">Example requirement</td>
-              </tr>
-            </tbody>
-          </table>
-</section>
-</div>
-<div id="private-enterprise-names">
-<section id="section-4.1.3">
-          <h4 id="name-private-enterprise-names">
-<a href="#section-4.1.3" class="section-number selfRef">4.1.3. </a><a href="#name-private-enterprise-names" class="section-name selfRef">Private enterprise names</a>
-          </h4>
-<p id="section-4.1.3-1">As stated above, an enterprise-managed Wi-Fi network might be able to access both the Internet and a private
-intranet. The private domains managed by the enterprise might only be resolvable using a specific DNS resolver,
-hence use of that resolver is essential for such domains. However it does not necessarily mean that all queries
-for all domains have to flow through that resolver.<a href="#section-4.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.3-2">Only sending the necessary queries through the enterprise resolver, and not generic Internet queries, has the privacy
-benefit of only exposing traffic to the enterprise that fall within a limited set of domains.<a href="#section-4.1.3-2" class="pilcrow">¶</a></p>
-<p id="section-4.1.3-3">Using encrypted DNS for private names also opens up the possibility of doing private name resolution outside
-of the content of a VPN or managed network. If the DNS resolver authenticates clients, it can offer its resolver
-for private names on a publicly accessible server, while still limiting the visibility of the DNS traffic.<a href="#section-4.1.3-3" class="pilcrow">¶</a></p>
-<table class="center" id="table-11">
-            <caption><a href="#table-11" class="selfRef">Table 11</a></caption>
-<thead>
-              <tr>
-                <th class="text-left" rowspan="1" colspan="1">Requirement</th>
-                <th class="text-left" rowspan="1" colspan="1">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">R11.1</td>
-                <td class="text-left" rowspan="1" colspan="1">Example requirement</td>
-              </tr>
-            </tbody>
-          </table>
-</section>
-</div>
-</section>
-</div>
-<div id="cdn-content">
-<section id="section-4.2">
-        <h3 id="name-encrypted-resolvers-for-con">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-encrypted-resolvers-for-con" class="section-name selfRef">Encrypted resolvers for content providers</a>
-        </h3>
-<p id="section-4.2-1">Content Delivery Networks (CDNs), and content-providers more broadly, can also provide encrypted DNS resolvers that can
-be used by clients over the public Internet. These resolvers can either allow resolution of all public names (like
-normal recursive resolvers), or be designed to serve a subset of names managed by the content provider (like an
-authoritative resolver). Using these resolvers can allow the content provider to directly control how DNS answers are
-used for load balancing and address selection, which could improve performance of connections to the content provider.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">Using a content-provider's encrypted resolver can also provide several privacy and security benefits:<a href="#section-4.2-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-4.2-3.1">Prevent devices along the network path to the content-provider's resolver from observing client DNS messages<a href="#section-4.2-3.1" class="pilcrow">¶</a>
-</li>
-          <li class="normal" id="section-4.2-3.2">Verify that answers come from the entity that manages the domains being resolved<a href="#section-4.2-3.2" class="pilcrow">¶</a>
-</li>
-          <li class="normal" id="section-4.2-3.3">Reduce the number of entities able to monitor the specific names accessed by a client to only the client and the content provider, assuming that the content provider would already see the names upon a secure connection later being made based on the DNS answers (e.g., in the TLS SNI extension)<a href="#section-4.2-3.3" class="pilcrow">¶</a>
-</li>
-        </ul>
-<table class="center" id="table-12">
-          <caption><a href="#table-12" class="selfRef">Table 12</a></caption>
-<thead>
-            <tr>
-              <th class="text-left" rowspan="1" colspan="1">Requirement</th>
-              <th class="text-left" rowspan="1" colspan="1">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-left" rowspan="1" colspan="1">R12.1</td>
-              <td class="text-left" rowspan="1" colspan="1">Example requirement</td>
-            </tr>
-          </tbody>
-        </table>
-</section>
-</div>
-</section>
-</div>
-<div id="priv-sec">
-<section id="section-5">
-      <h2 id="name-privacy-and-security-requir">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-privacy-and-security-requir" class="section-name selfRef">Privacy and security requirements</a>
-      </h2>
-<p id="section-5-1">Encrypted (and authenticated) DNS improves the privacy and security of DNS queries and answers in the presence of malicious
-attackers. Such attackers are assumed to interfere with or otherwise impede DNS traffic and corresponding
-discovery mechanisms. They may be on-path or off-path between the client and entities with which the client
-communicates <span>[<a href="#RFC3552" class="xref">RFC3552</a>]</span>. These attackers can inject, tamper, or otherwise interfere with traffic as needed.
-Given these capabilities, an attacker may have a variety of goals, including, though not limited to:<a href="#section-5-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5-2.1">Monitor and profile clients by observing unencrypted DNS traffic<a href="#section-5-2.1" class="pilcrow">¶</a>
-</li>
-        <li class="normal" id="section-5-2.2">Modify unencrypted DNS traffic to filter or augment the user experience<a href="#section-5-2.2" class="pilcrow">¶</a>
-</li>
-        <li class="normal" id="section-5-2.3">Block encrypted DNS<a href="#section-5-2.3" class="pilcrow">¶</a>
-</li>
-      </ul>
-<p id="section-5-3">Clients cannot assume that their network does not have such an attacker unless given some means of authenticating or otherwise
-trusting the communication with their DNS resolver.<a href="#section-5-3" class="pilcrow">¶</a></p>
-<p id="section-5-4">Given this type of attacker, resolver discovery mechanisms must be designed carefully to not worsen a client's security or
-privacy posture. In particular, attackers must not be able to:<a href="#section-5-4" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5-5.1">Redirect secure DNS traffic to themselves when they would not otherwise handle DNS traffic.<a href="#section-5-5.1" class="pilcrow">¶</a>
-</li>
-        <li class="normal" id="section-5-5.2">Override or interfere with the resolver preferences of a user or administrator.<a href="#section-5-5.2" class="pilcrow">¶</a>
-</li>
-        <li class="normal" id="section-5-5.3">Cause clients to use a discovered resolver which has no authenticated delegation from a client-known entity.<a href="#section-5-5.3" class="pilcrow">¶</a>
-</li>
-        <li class="normal" id="section-5-5.4">Influence automatic discovery mechanisms such that a client uses one or more resolvers that are not
-otherwise involved with providing service to the client, such as: a network provider, a VPN server, a
-content provider being accessed, or a server that the client has manually configured.<a href="#section-5-5.4" class="pilcrow">¶</a>
-</li>
-      </ul>
-<p id="section-5-6">Beyond these requirements, standards describing resolver discovery mechanisms must not place any requirements
-on clients to select particular resolvers over others.<a href="#section-5-6" class="pilcrow">¶</a></p>
-<p id="section-5-7">When discovering DNS resolvers on a local network, clients have no mechanism to distinguish between cases 
-where an active attacker with the above capabilities is interfering with discovery, and situations wherein 
-the network has no encrypted resolver. Absent such a mechanism, an attacker can always succeed in these
-goals. Therefore, in such circumstances, viable solutions for local DNS resolver discovery should consider 
-weaker attackers, such as those with only passive eavesdropping capabilities. It is unknown whether such
-relaxations represent a realistic attacker in practice. Thus, local discovery solutions designed around
-this threat model may have limited value.<a href="#section-5-7" class="pilcrow">¶</a></p>
-<div id="on-opportunistic-encryption">
-<section id="section-5.1">
-        <h3 id="name-on-opportunistic-encryption">
-<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-on-opportunistic-encryption" class="section-name selfRef">On opportunistic encryption</a>
-        </h3>
-<p id="section-5.1-1">Opportunistic encrypted DNS, when the client cannot authenticate the entity that provides encrypted DNS, does
-not meet the requirements laid out here for resolver discovery. While opportunistic encryption can provide some
-benefits, specifically in reducing the ability for other entities to observe traffic, it is not a viable solution
-against an on-path attacker.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">Performing opportunistic encrypted DNS does not require specific discovery mechanisms. Section 4.1 of <span>[<a href="#RFC7858" class="xref">RFC7858</a>]</span>
-already describes how to use DNS-over-TLS opportunistically.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="handling-exceptions-and-failures">
-<section id="section-5.2">
-        <h3 id="name-handling-exceptions-and-fai">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-handling-exceptions-and-fai" class="section-name selfRef">Handling exceptions and failures</a>
-        </h3>
-<p id="section-5.2-1">Even with encrypted DNS resolver discovery in place, clients must be prepared to handle certain scenarios where encrypted DNS
-cannot be used. In these scenarios, clients must consider if it is appropriate to fail open by sending the DNS queries without
-encryption, fail closed by not doing so, or presenting a choice to a user or administrator. The exact behavior is a
-local client policy decision.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2-2">Some networks that use Captive Portals will not allow any Internet connectivity until a client has interacted with the portal
-<span>[<a href="#I-D.ietf-capport-architecture" class="xref">I-D.ietf-capport-architecture</a>]</span>. If these networks do not use encrypted DNS for their own resolution, a client will need to perform
-unencrypted DNS queries in order to get out of captivity. Many operating systems have specific client code responsible for detecting
-and interacting with Captive Portals; these system components may be good candidates for failing open, since they do not generally
-represent user traffic.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2-3">Other networks may not allow any use of encrypted DNS, or any use of encrypted DNS to resolvers other than a network-provisioned
-resolver. Clients should not silently fail open in these cases, but if these networks are trusted by or administered by the user, the user
-may want to specifically follow the network's DNS policy instead of what the client would do on an unknown or untrusted network.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="requirements-summary">
-<section id="section-6">
-      <h2 id="name-requirements-summary">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-requirements-summary" class="section-name selfRef">Requirements Summary</a>
-      </h2>
-<p id="section-6-1">This sections lists the complete set of requirements described above, for ease of reference.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<table class="center" id="table-13">
-        <caption><a href="#table-13" class="selfRef">Table 13</a></caption>
-<thead>
-          <tr>
-            <th class="text-left" rowspan="1" colspan="1">Requirement</th>
-            <th class="text-left" rowspan="1" colspan="1">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">R1.1</td>
-            <td class="text-left" rowspan="1" colspan="1">There must be a mechanism for a client to learn the set of encrypted resolvers that are associated with a resolver that is known only by its IP address.</td>
-          </tr>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">R1.2</td>
-            <td class="text-left" rowspan="1" colspan="1">Discovery must be possible even when the IP address is only valid locally.</td>
+            <td class="text-left" rowspan="1" colspan="1">Discovery MUST support DNS-over-TLS <span>[<a href="#RFC7858" class="xref">RFC7858</a>]</span>.</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">R1.3</td>
-            <td class="text-left" rowspan="1" colspan="1">More to be added</td>
+            <td class="text-left" rowspan="1" colspan="1">Discovery MUST support DNS-over-HTTPS <span>[<a href="#RFC8484" class="xref">RFC8484</a>]</span>.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R1.4</td>
+            <td class="text-left" rowspan="1" colspan="1">Discovery SHOULD support working-group adopted drafts for encrypted DNS, such as DNS-over-QUIC <span>[<a href="#I-D.ietf-dprive-dnsoquic" class="xref">I-D.ietf-dprive-dnsoquic</a>]</span>.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R1.5</td>
+            <td class="text-left" rowspan="1" colspan="1">In an ISP network the upstream ISP MUST be able to announce the support of encrypted DNS service and this information MUST be available via a query sent to a local network forwarder.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R1.6</td>
+            <td class="text-left" rowspan="1" colspan="1">This discovery MUST NOT require software features that cannot be found in existing widely deployed DNS forwarders.</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">R2.1</td>
-            <td class="text-left" rowspan="1" colspan="1">Example requirement</td>
+            <td class="text-left" rowspan="1" colspan="1">Networks using DHCP MUST be able to announce one or more equivalent encrypted DNS resolvers.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R2.2</td>
+            <td class="text-left" rowspan="1" colspan="1">Networks using IPv6 Router Advertisement MUST be able to announce one or more equivalent encrypted DNS resolvers.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R2.3</td>
+            <td class="text-left" rowspan="1" colspan="1">Networks using Point-to-Point Protocol MUST be able to announce one or more equivalent encrypted DNS resolvers.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R2.4</td>
+            <td class="text-left" rowspan="1" colspan="1">There SHOULD be liaison with 3GPP to allow Protocol Configuration Options, or similar mechanism, to be able to announce one or more equivalent encrypted DNS resolvers.</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">R3.1</td>
-            <td class="text-left" rowspan="1" colspan="1">Example requirement</td>
+            <td class="text-left" rowspan="1" colspan="1">When discovery is instantiated from a resolver, that resolver MAY be encrypted or not.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R3.2</td>
+            <td class="text-left" rowspan="1" colspan="1">When discovery is instantiated from a resolver, that resolver MAY be locally or globally reachable. Both options MUST be supported.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R3.3</td>
+            <td class="text-left" rowspan="1" colspan="1">Discovery of an encrypted resolver identified by another resolver SHOULD obtain some evidence that the two resolvers are operated by the same administrative domain.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R3.4</td>
+            <td class="text-left" rowspan="1" colspan="1">Where the two resolvers operate at the same IP address, this is considered sufficient evidence.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R4.1</td>
+            <td class="text-left" rowspan="1" colspan="1">Discovery SHOULD NOT require the TLS certificates of encrypted DNS resolvers to state their IP address.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R4.2</td>
+            <td class="text-left" rowspan="1" colspan="1">When multiple resolvers are provided the operator SHOULD be able to indicate a preference.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R4.3</td>
+            <td class="text-left" rowspan="1" colspan="1">Discovery MAY rely on probing one or more well-known ports at the same IP address as the Do53 resolver in order to learn whether this capability exists, but this is OPTIONAL.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R5.1</td>
+            <td class="text-left" rowspan="1" colspan="1">Discovery MUST NOT worsen a client's security or privacy posture.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R5.2</td>
+            <td class="text-left" rowspan="1" colspan="1">Threat modelling SHOULD assume that there is <em>no</em> active attacker on the local network.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R5.3</td>
+            <td class="text-left" rowspan="1" colspan="1">Threat modelling MUST assume that there is a passive eavesdropping attacker on the local network.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R5.4</td>
+            <td class="text-left" rowspan="1" colspan="1">Threat modelling MUST assume that this attacker can actively attack from outside the local network.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R5.5</td>
+            <td class="text-left" rowspan="1" colspan="1">Attackers MUST NOT be able to redirect secure DNS traffic to themselves when they would not otherwise handle DNS traffic.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R5.6</td>
+            <td class="text-left" rowspan="1" colspan="1">Attackers MUST NOT be able to override or interfere with the resolver preferences of a user or administrator.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R5.7</td>
+            <td class="text-left" rowspan="1" colspan="1">Attackers MUST NOT be able to cause clients to use a discovered resolver which has no authenticated delegation from a client-known entity.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R5.8</td>
+            <td class="text-left" rowspan="1" colspan="1">Attackers MUST NOT be able to influence automatic discovery mechanisms such that a client uses one or more resolvers that are not otherwise involved with providing service to the client, including a network provider, a VPN server, a content provider being accessed, or a server that the client has manually configured.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">R5.9</td>
+            <td class="text-left" rowspan="1" colspan="1">Discovery MUST NOT place any requirements on clients to select particular resolvers over others.</td>
           </tr>
         </tbody>
       </table>
 </section>
 </div>
 <div id="security-considerations">
-<section id="section-7">
+<section id="section-8">
       <h2 id="name-security-considerations">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">All security considerations relevant to a particular use case are described under that section.
-Additional considerations common to all of them are described in <a href="#priv-sec" class="xref">Section 5</a>.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-8-1">See <a href="#priv-sec" class="xref">Section 6</a>.<a href="#section-8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-8">
+<section id="section-9">
       <h2 id="name-iana-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-8-1">This document has no IANA actions.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-9-1">This document has no IANA actions.<a href="#section-9-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<section id="section-9">
+<section id="section-10">
       <h2 id="name-references">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
-<section id="section-9.1">
+<section id="section-10.1">
         <h3 id="name-normative-references">
-<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
@@ -1596,22 +1401,30 @@ Additional considerations common to all of them are described in <a href="#priv-
 <dd class="break"></dd>
 </dl>
 </section>
-<section id="section-9.2">
+<section id="section-10.2">
         <h3 id="name-informative-references">
-<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="I-D.ietf-capport-architecture">[I-D.ietf-capport-architecture]</dt>
         <dd>
-<span class="refAuthor">Larose, K.</span><span class="refAuthor">, Dolson, D.</span><span class="refAuthor">, and H. Liu</span>, <span class="refTitle">"Captive Portal Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-capport-architecture-09</span>, <time datetime="2020-08-08" class="refDate">8 August 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-capport-architecture-09.txt">http://www.ietf.org/internet-drafts/draft-ietf-capport-architecture-09.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">Larose, K.</span><span class="refAuthor">, Dolson, D.</span><span class="refAuthor">, and H. Liu</span>, <span class="refTitle">"Captive Portal Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-capport-architecture-10</span>, <time datetime="2020-09-23" class="refDate">23 September 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-capport-architecture-10.txt">http://www.ietf.org/internet-drafts/draft-ietf-capport-architecture-10.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-dprive-dnsoquic">[I-D.ietf-dprive-dnsoquic]</dt>
         <dd>
-<span class="refAuthor">Huitema, C.</span><span class="refAuthor">, Mankin, A.</span><span class="refAuthor">, and S. Dickinson</span>, <span class="refTitle">"Specification of DNS over Dedicated QUIC Connections"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-dprive-dnsoquic-00</span>, <time datetime="2020-04-27" class="refDate">27 April 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-dprive-dnsoquic-00.txt">http://www.ietf.org/internet-drafts/draft-ietf-dprive-dnsoquic-00.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">Huitema, C.</span><span class="refAuthor">, Mankin, A.</span><span class="refAuthor">, and S. Dickinson</span>, <span class="refTitle">"Specification of DNS over Dedicated QUIC Connections"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-dprive-dnsoquic-01</span>, <time datetime="2020-10-20" class="refDate">20 October 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-dprive-dnsoquic-01.txt">http://www.ietf.org/internet-drafts/draft-ietf-dprive-dnsoquic-01.txt</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC1035">[RFC1035]</dt>
+        <dd>
+<span class="refAuthor">Mockapetris, P.</span>, <span class="refTitle">"Domain names - implementation and specification"</span>, <span class="seriesInfo">STD 13</span>, <span class="seriesInfo">RFC 1035</span>, <span class="seriesInfo">DOI 10.17487/RFC1035</span>, <time datetime="1987-11" class="refDate">November 1987</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc1035">https://www.rfc-editor.org/info/rfc1035</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC1877">[RFC1877]</dt>
         <dd>
 <span class="refAuthor">Cobb, S.</span>, <span class="refTitle">"PPP Internet Protocol Control Protocol Extensions for Name Server Addresses"</span>, <span class="seriesInfo">RFC 1877</span>, <span class="seriesInfo">DOI 10.17487/RFC1877</span>, <time datetime="1995-12" class="refDate">December 1995</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc1877">https://www.rfc-editor.org/info/rfc1877</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC1918">[RFC1918]</dt>
+        <dd>
+<span class="refAuthor">Rekhter, Y.</span><span class="refAuthor">, Moskowitz, B.</span><span class="refAuthor">, Karrenberg, D.</span><span class="refAuthor">, de Groot, G. J.</span><span class="refAuthor">, and E. Lear</span>, <span class="refTitle">"Address Allocation for Private Internets"</span>, <span class="seriesInfo">BCP 5</span>, <span class="seriesInfo">RFC 1918</span>, <span class="seriesInfo">DOI 10.17487/RFC1918</span>, <time datetime="1996-02" class="refDate">February 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc1918">https://www.rfc-editor.org/info/rfc1918</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2132">[RFC2132]</dt>
         <dd>
@@ -1620,10 +1433,6 @@ Additional considerations common to all of them are described in <a href="#priv-
 <dt id="RFC3552">[RFC3552]</dt>
         <dd>
 <span class="refAuthor">Rescorla, E.</span><span class="refAuthor"> and B. Korver</span>, <span class="refTitle">"Guidelines for Writing RFC Text on Security Considerations"</span>, <span class="seriesInfo">BCP 72</span>, <span class="seriesInfo">RFC 3552</span>, <span class="seriesInfo">DOI 10.17487/RFC3552</span>, <time datetime="2003-07" class="refDate">July 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3552">https://www.rfc-editor.org/info/rfc3552</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC7296">[RFC7296]</dt>
-        <dd>
-<span class="refAuthor">Kaufman, C.</span><span class="refAuthor">, Hoffman, P.</span><span class="refAuthor">, Nir, Y.</span><span class="refAuthor">, Eronen, P.</span><span class="refAuthor">, and T. Kivinen</span>, <span class="refTitle">"Internet Key Exchange Protocol Version 2 (IKEv2)"</span>, <span class="seriesInfo">STD 79</span>, <span class="seriesInfo">RFC 7296</span>, <span class="seriesInfo">DOI 10.17487/RFC7296</span>, <time datetime="2014-10" class="refDate">October 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7296">https://www.rfc-editor.org/info/rfc7296</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7858">[RFC7858]</dt>
         <dd>
@@ -1638,12 +1447,8 @@ Additional considerations common to all of them are described in <a href="#priv-
 <span class="refAuthor">Hoffman, P.</span><span class="refAuthor"> and P. McManus</span>, <span class="refTitle">"DNS Queries over HTTPS (DoH)"</span>, <span class="seriesInfo">RFC 8484</span>, <span class="seriesInfo">DOI 10.17487/RFC8484</span>, <time datetime="2018-10" class="refDate">October 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8484">https://www.rfc-editor.org/info/rfc8484</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8520">[RFC8520]</dt>
-        <dd>
-<span class="refAuthor">Lear, E.</span><span class="refAuthor">, Droms, R.</span><span class="refAuthor">, and D. Romascanu</span>, <span class="refTitle">"Manufacturer Usage Description Specification"</span>, <span class="seriesInfo">RFC 8520</span>, <span class="seriesInfo">DOI 10.17487/RFC8520</span>, <time datetime="2019-03" class="refDate">March 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8520">https://www.rfc-editor.org/info/rfc8520</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8598">[RFC8598]</dt>
       <dd>
-<span class="refAuthor">Pauly, T.</span><span class="refAuthor"> and P. Wouters</span>, <span class="refTitle">"Split DNS Configuration for the Internet Key Exchange Protocol Version 2 (IKEv2)"</span>, <span class="seriesInfo">RFC 8598</span>, <span class="seriesInfo">DOI 10.17487/RFC8598</span>, <time datetime="2019-05" class="refDate">May 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8598">https://www.rfc-editor.org/info/rfc8598</a>&gt;</span>. </dd>
+<span class="refAuthor">Lear, E.</span><span class="refAuthor">, Droms, R.</span><span class="refAuthor">, and D. Romascanu</span>, <span class="refTitle">"Manufacturer Usage Description Specification"</span>, <span class="seriesInfo">RFC 8520</span>, <span class="seriesInfo">DOI 10.17487/RFC8520</span>, <time datetime="2019-03" class="refDate">March 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8520">https://www.rfc-editor.org/info/rfc8520</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1653,10 +1458,10 @@ Additional considerations common to all of them are described in <a href="#priv-
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="section-appendix.a-1">This document was started based on contributions during the ADD meeting of IETF108, on the list, and
-from draft-pauly-add-requirements.<a href="#section-appendix.a-1" class="pilcrow">¶</a></p>
-<p id="section-appendix.a-2">More contributions are required! Please consider starting a github issue, submit a pull request, or simply
-raise the topic on the ADD list.<a href="#section-appendix.a-2" class="pilcrow">¶</a></p>
+<p id="section-appendix.a-1">This document was started based on discussion during the ADD meeting of IETF108, the subsequent interims,
+on the list, and with text from draft-pauly-add-requirements. In particular this document was informed by contributions
+from Martin Thomson, Eric Rescorla, Tommy Jensen, Ben Schwartz, Paul Hoffman, Ralf Weber, Michael Richardson,
+Mohamed Boucadair, Sanjay Mishra, Jim Reid, Neil Cook, Nic Leymann and Andrew Campling.<a href="#section-appendix.a-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
@@ -1709,6 +1514,18 @@ raise the topic on the ADD list.<a href="#section-appendix.a-2" class="pilcrow">
 <div class="email">
 <span>Email:</span>
 <a href="mailto:TirumaleswarReddy_Konda@McAfee.com" class="email">TirumaleswarReddy_Konda@McAfee.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Daniel Migault</span></div>
+<div dir="auto" class="left"><span class="org">Ericsson</span></div>
+<div dir="auto" class="left"><span class="street-address">8275 Trans Canada Route</span></div>
+<div dir="auto" class="left">
+<span class="locality">Saint Laurent, QC</span>  </div>
+<div dir="auto" class="left"><span class="country-name">Canada</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:daniel.migault@ericsson.com" class="email">daniel.migault@ericsson.com</a>
 </div>
 </address>
 </section>
