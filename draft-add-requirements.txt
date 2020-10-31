@@ -5,14 +5,14 @@
 ADD                                                               C. Box
 Internet-Draft                                                        BT
 Intended status: Informational                                  T. Pauly
-Expires: 3 May 2021                                                Apple
+Expires: 4 May 2021                                                Apple
                                                                C.A. Wood
                                                               Cloudflare
                                                                 T. Reddy
                                                                   McAfee
                                                               D. Migault
                                                                 Ericsson
-                                                         30 October 2020
+                                                         31 October 2020
 
 
                 Requirements for Adaptive DNS Discovery
@@ -49,11 +49,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 May 2021.
+   This Internet-Draft will expire on 4 May 2021.
 
 
 
-Box, et al.                Expires 3 May 2021                   [Page 1]
+Box, et al.                Expires 4 May 2021                   [Page 1]
 
 Internet-Draft                   ADDREQ                     October 2020
 
@@ -81,19 +81,19 @@ Table of Contents
      3.1.  Equivalence . . . . . . . . . . . . . . . . . . . . . . .   4
      3.2.  Verification of equivalence . . . . . . . . . . . . . . .   5
      3.3.  Local addressing  . . . . . . . . . . . . . . . . . . . .   5
-   4.  Network-identified encrypted resolvers  . . . . . . . . . . .   6
+   4.  Network-identified encrypted resolvers  . . . . . . . . . . .   5
    5.  Resolver-identified encrypted resolvers . . . . . . . . . . .   6
-     5.1.  Opportunistic discovery by well-known port  . . . . . . .   7
+     5.1.  Opportunistic discovery by well-known port  . . . . . . .   6
    6.  Privacy and security requirements . . . . . . . . . . . . . .   7
      6.1.  Handling exceptions and failures  . . . . . . . . . . . .   8
-   7.  Statement of Requirements . . . . . . . . . . . . . . . . . .   9
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  11
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  11
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  11
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .  11
+   7.  Statement of Requirements . . . . . . . . . . . . . . . . . .   8
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  10
+   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  10
+   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  10
+     10.1.  Normative References . . . . . . . . . . . . . . . . . .  10
      10.2.  Informative References . . . . . . . . . . . . . . . . .  11
-   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  13
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  13
+   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  12
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
 
 1.  Introduction
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Box, et al.                Expires 3 May 2021                   [Page 2]
+Box, et al.                Expires 4 May 2021                   [Page 2]
 
 Internet-Draft                   ADDREQ                     October 2020
 
@@ -165,7 +165,7 @@ Internet-Draft                   ADDREQ                     October 2020
 
 
 
-Box, et al.                Expires 3 May 2021                   [Page 3]
+Box, et al.                Expires 4 May 2021                   [Page 3]
 
 Internet-Draft                   ADDREQ                     October 2020
 
@@ -221,7 +221,7 @@ Internet-Draft                   ADDREQ                     October 2020
 
 
 
-Box, et al.                Expires 3 May 2021                   [Page 4]
+Box, et al.                Expires 4 May 2021                   [Page 4]
 
 Internet-Draft                   ADDREQ                     October 2020
 
@@ -240,7 +240,7 @@ Internet-Draft                   ADDREQ                     October 2020
    method of verifying that the claimed-equivalent Encrypted DNS
    resolver is operated by the same administrative domain as the Do53
    resolver.  In the subset of cases where the two operate at the same
-   IP address, this is not required.
+   IP address, the equivalence can be more easily determined.
 
    For network-identified encrypted resolvers, at present the discovery
    process needs to accept the client's existing trust of
@@ -258,29 +258,10 @@ Internet-Draft                   ADDREQ                     October 2020
    that is accessible either at the same (local) address, or at a
    different global address.  Both options need to be supported.
 
-   In either case the resolver would offer a TLS certificate proving
-   ownership of a name.  This name should be meaningful to the end user,
-   conveying the identity of the resolver operator, but given the lack
-   of network authentication it does not currently seem possible to
-   mandate a requirement that the name has to match anything else the
-   client knows.  It is not generally possible to obtain a TLS
-   certificate proving ownership of a locally-scoped IP address, so
-   discovery should not require this.
-
-
-
-
-
-
-
-
-
-
-
-Box, et al.                Expires 3 May 2021                   [Page 5]
-
-Internet-Draft                   ADDREQ                     October 2020
-
+   An encrypted DNS resolver can offer a TLS certificate proving
+   ownership of a name, but it is important to note that this name (or
+   any associated address) is often not sufficient to prove that an
+   Encrypted DNS resolver is equivalent to a Do53 resolver.
 
 4.  Network-identified encrypted resolvers
 
@@ -293,6 +274,13 @@ Internet-Draft                   ADDREQ                     October 2020
 
    A solution is required that enhances the set of information delivered
    to include details of one or more equivalent encrypted DNS resolvers.
+
+
+
+Box, et al.                Expires 4 May 2021                   [Page 5]
+
+Internet-Draft                   ADDREQ                     October 2020
+
 
 5.  Resolver-identified encrypted resolvers
 
@@ -328,16 +316,6 @@ Internet-Draft                   ADDREQ                     October 2020
    accessible for inspection, it becomes quite difficult for the
    infrastructure to suspect anything.
 
-
-
-
-
-
-Box, et al.                Expires 3 May 2021                   [Page 6]
-
-Internet-Draft                   ADDREQ                     October 2020
-
-
 5.1.  Opportunistic discovery by well-known port
 
    Some encrypted DNS protocols (DNS-over-TLS [RFC7858] and DNS-over-
@@ -346,6 +324,19 @@ Internet-Draft                   ADDREQ                     October 2020
    unencrypted resolver.  This could form part of the solution for
    upgrading to an encrypted local resolver, but is not a complete
    solution.
+
+
+
+
+
+
+
+
+
+Box, et al.                Expires 4 May 2021                   [Page 6]
+
+Internet-Draft                   ADDREQ                     October 2020
+
 
 6.  Privacy and security requirements
 
@@ -384,16 +375,6 @@ Internet-Draft                   ADDREQ                     October 2020
    *  Cause clients to use a discovered resolver which has no
       authenticated delegation from a client-known entity.
 
-
-
-
-
-
-Box, et al.                Expires 3 May 2021                   [Page 7]
-
-Internet-Draft                   ADDREQ                     October 2020
-
-
    *  Influence automatic discovery mechanisms such that a client uses
       one or more resolvers that are not otherwise involved with
       providing service to the client, such as: a network provider, a
@@ -405,6 +386,14 @@ Internet-Draft                   ADDREQ                     October 2020
    the above capabilities is interfering with discovery, and situations
    wherein the network has no encrypted resolver.  Absent such a
    mechanism, an attacker can always succeed in these goals.  Therefore,
+
+
+
+Box, et al.                Expires 4 May 2021                   [Page 7]
+
+Internet-Draft                   ADDREQ                     October 2020
+
+
    in such circumstances, viable solutions for local DNS resolver
    discovery should consider weaker attackers, such as those with only
    passive eavesdropping capabilities.  It is unknown whether such
@@ -442,143 +431,111 @@ Internet-Draft                   ADDREQ                     October 2020
    want to specifically follow the network's DNS policy instead of what
    the client would do on an unknown or untrusted network.
 
-
-
-
-Box, et al.                Expires 3 May 2021                   [Page 8]
-
-Internet-Draft                   ADDREQ                     October 2020
-
-
 7.  Statement of Requirements
 
    This section lists requirements that flow from the above sections.
 
-     +=============+=================================================+
-     | Requirement | Description                                     |
-     +=============+=================================================+
-     | R1.1        | Discovery MUST provide a client the ability to  |
-     |             | learn the set of, or absence of, equivalent     |
-     |             | resolvers from any instance of a resolver.      |
-     +-------------+-------------------------------------------------+
-     | R1.2        | Discovery MUST support DNS-over-TLS [RFC7858].  |
-     +-------------+-------------------------------------------------+
-     | R1.3        | Discovery MUST support DNS-over-HTTPS           |
-     |             | [RFC8484].                                      |
-     +-------------+-------------------------------------------------+
-     | R1.4        | Discovery SHOULD support working-group adopted  |
-     |             | drafts for encrypted DNS, such as DNS-over-QUIC |
-     |             | [I-D.ietf-dprive-dnsoquic].                     |
-     +-------------+-------------------------------------------------+
-     | R1.5        | In an ISP network the upstream ISP MUST be able |
-     |             | to announce the support of encrypted DNS        |
-     |             | service and this information MUST be available  |
-     |             | via a query sent to a local network forwarder.  |
-     +-------------+-------------------------------------------------+
-     | R1.6        | This discovery MUST NOT require software        |
-     |             | features that cannot be found in existing       |
-     |             | widely deployed DNS forwarders.                 |
-     +-------------+-------------------------------------------------+
-     | R2.1        | Networks using DHCP MUST be able to announce    |
-     |             | one or more equivalent encrypted DNS resolvers. |
-     +-------------+-------------------------------------------------+
-     | R2.2        | Networks using IPv6 Router Advertisement MUST   |
-     |             | be able to announce one or more equivalent      |
-     |             | encrypted DNS resolvers.                        |
-     +-------------+-------------------------------------------------+
-     | R2.3        | Networks using Point-to-Point Protocol MUST be  |
-     |             | able to announce one or more equivalent         |
-     |             | encrypted DNS resolvers.                        |
-     +-------------+-------------------------------------------------+
-     | R2.4        | There SHOULD be liaison with 3GPP to allow      |
-     |             | Protocol Configuration Options, or similar      |
-     |             | mechanism, to be able to announce one or more   |
-     |             | equivalent encrypted DNS resolvers.             |
-     +-------------+-------------------------------------------------+
-     | R3.1        | When discovery is instantiated from a resolver, |
-     |             | that resolver MAY be encrypted or not.          |
-     +-------------+-------------------------------------------------+
+   +=============+=====================================================+
+   | Requirement | Description                                         |
+   +=============+=====================================================+
+   | R1.1        | Discovery MUST provide a client the ability to      |
+   |             | learn the set of, or absence of, equivalent         |
+   |             | resolvers from any instance of a resolver.          |
+   +-------------+-----------------------------------------------------+
 
 
 
-Box, et al.                Expires 3 May 2021                   [Page 9]
+Box, et al.                Expires 4 May 2021                   [Page 8]
 
 Internet-Draft                   ADDREQ                     October 2020
 
 
-     | R3.2        | When discovery is instantiated from a resolver, |
-     |             | that resolver MAY be locally or globally        |
-     |             | reachable.  Both options MUST be supported.     |
-     +-------------+-------------------------------------------------+
-     | R3.3        | Discovery of an encrypted resolver identified   |
-     |             | by another resolver SHOULD obtain some evidence |
-     |             | that the two resolvers are operated by the same |
-     |             | administrative domain.                          |
-     +-------------+-------------------------------------------------+
-     | R3.4        | Where the two resolvers operate at the same IP  |
-     |             | address, this is considered sufficient          |
-     |             | evidence.                                       |
-     +-------------+-------------------------------------------------+
-     | R4.1        | Discovery SHOULD NOT require the TLS            |
-     |             | certificates of encrypted DNS resolvers to      |
-     |             | state their IP address.                         |
-     +-------------+-------------------------------------------------+
-     | R4.2        | When multiple resolvers are provided the        |
-     |             | operator SHOULD be able to indicate a           |
-     |             | preference.                                     |
-     +-------------+-------------------------------------------------+
-     | R4.3        | Discovery MAY rely on probing one or more well- |
-     |             | known ports at the same IP address as the Do53  |
-     |             | resolver in order to learn whether this         |
-     |             | capability exists, but this is OPTIONAL.        |
-     +-------------+-------------------------------------------------+
-     | R5.1        | Discovery MUST NOT worsen a client's security   |
-     |             | or privacy posture.                             |
-     +-------------+-------------------------------------------------+
-     | R5.2        | Threat modelling SHOULD assume that there is    |
-     |             | _no_ active attacker on the local network.      |
-     +-------------+-------------------------------------------------+
-     | R5.3        | Threat modelling MUST assume that there is a    |
-     |             | passive eavesdropping attacker on the local     |
-     |             | network.                                        |
-     +-------------+-------------------------------------------------+
-     | R5.4        | Threat modelling MUST assume that this attacker |
-     |             | can actively attack from outside the local      |
-     |             | network.                                        |
-     +-------------+-------------------------------------------------+
-     | R5.5        | Attackers MUST NOT be able to redirect secure   |
-     |             | DNS traffic to themselves when they would not   |
-     |             | otherwise handle DNS traffic.                   |
-     +-------------+-------------------------------------------------+
-     | R5.6        | Attackers MUST NOT be able to override or       |
-     |             | interfere with the resolver preferences of a    |
-     |             | user or administrator.                          |
-     +-------------+-------------------------------------------------+
+   | R1.2        | Discovery MUST support DNS-over-TLS [RFC7858].      |
+   +-------------+-----------------------------------------------------+
+   | R1.3        | Discovery MUST support DNS-over-HTTPS               |
+   |             | [RFC8484].                                          |
+   +-------------+-----------------------------------------------------+
+   | R1.4        | Discovery SHOULD support working-group adopted      |
+   |             | drafts for encrypted DNS, such as DNS-over-         |
+   |             | QUIC [I-D.ietf-dprive-dnsoquic].                    |
+   +-------------+-----------------------------------------------------+
+   | R1.5        | In an ISP network the upstream ISP MUST be          |
+   |             | able to announce the support of encrypted DNS       |
+   |             | service and this information MUST be available      |
+   |             | via a query sent to a local network forwarder.      |
+   +-------------+-----------------------------------------------------+
+   | R1.6        | This discovery MUST NOT require software            |
+   |             | features that cannot be found in existing           |
+   |             | widely deployed DNS forwarders.                     |
+   +-------------+-----------------------------------------------------+
+   | R2.1        | Networks using MUST be able to announce one or      |
+   |             | more equivalent encrypted DNS resolvers using       |
+   |             | existing mechanisms such as DHCP, IPv6 Router       |
+   |             | Advertisement, and the Point-to-Point               |
+   |             | Protocol.  The format for resolver information      |
+   |             | MUST be specified such that provisioning            |
+   |             | mechanisms defined outside of the IETF can          |
+   |             | advertise encrypted DNS resolvers.                  |
+   +-------------+-----------------------------------------------------+
+   | R3.1        | When discovery is instantiated from a               |
+   |             | resolver, that resolver MAY be encrypted or         |
+   |             | not.                                                |
+   +-------------+-----------------------------------------------------+
+   | R3.2        | When discovery is instantiated from a               |
+   |             | resolver, that resolver MAY be locally or           |
+   |             | globally reachable.  Both options MUST be           |
+   |             | supported.                                          |
+   +-------------+-----------------------------------------------------+
+   | R3.3        | Discovery of an encrypted resolver identified       |
+   |             | by another resolver SHOULD obtain some              |
+   |             | evidence that the two resolvers are operated        |
+   |             | by the same administrative domain.                  |
+   +-------------+-----------------------------------------------------+
+   | R4.1        | Discovery MUST NOT worsen a client's security       |
+   |             | or privacy posture.                                 |
+   +-------------+-----------------------------------------------------+
+   | R4.2        | Threat modelling MUST assume that there is a        |
+   |             | passive eavesdropping attacker on the local         |
+   |             | network.                                            |
+   +-------------+-----------------------------------------------------+
 
 
 
-Box, et al.                Expires 3 May 2021                  [Page 10]
+Box, et al.                Expires 4 May 2021                   [Page 9]
 
 Internet-Draft                   ADDREQ                     October 2020
 
 
-     | R5.7        | Attackers MUST NOT be able to cause clients to  |
-     |             | use a discovered resolver which has no          |
-     |             | authenticated delegation from a client-known    |
-     |             | entity.                                         |
-     +-------------+-------------------------------------------------+
-     | R5.8        | Attackers MUST NOT be able to influence         |
-     |             | automatic discovery mechanisms such that a      |
-     |             | client uses one or more resolvers that are not  |
-     |             | otherwise involved with providing service to    |
-     |             | the client, including a network provider, a VPN |
-     |             | server, a content provider being accessed, or a |
-     |             | server that the client has manually configured. |
-     +-------------+-------------------------------------------------+
-     | R5.9        | Discovery MUST NOT place any requirements on    |
-     |             | clients to select particular resolvers over     |
-     |             | others.                                         |
-     +-------------+-------------------------------------------------+
+   | R4.3        | Threat modelling MUST assume that this              |
+   |             | attacker can actively attack from outside the       |
+   |             | local network.                                      |
+   +-------------+-----------------------------------------------------+
+   | R4.4        | Attackers MUST NOT be able to redirect secure       |
+   |             | DNS traffic to themselves when they would not       |
+   |             | otherwise handle DNS traffic.                       |
+   +-------------+-----------------------------------------------------+
+   | R4.5        | Attackers MUST NOT be able to override or           |
+   |             | interfere with the resolver preferences of a        |
+   |             | user or administrator.                              |
+   +-------------+-----------------------------------------------------+
+   | R4.6        | Attackers MUST NOT be able to cause clients to      |
+   |             | use a discovered resolver which has no              |
+   |             | authenticated delegation from a client-known        |
+   |             | entity.                                             |
+   +-------------+-----------------------------------------------------+
+   | R4.7        | Attackers MUST NOT be able to influence             |
+   |             | automatic discovery mechanisms such that a          |
+   |             | client uses one or more resolvers that are not      |
+   |             | otherwise involved with providing service to        |
+   |             | the client, including a network provider, a         |
+   |             | VPN server, a content provider being accessed,      |
+   |             | or a server that the client has manually            |
+   |             | configured.                                         |
+   +-------------+-----------------------------------------------------+
+   | R4.8        | Discovery MUST NOT place any requirements on        |
+   |             | clients to select particular resolvers over         |
+   |             | others.                                             |
+   +-------------+-----------------------------------------------------+
 
                                   Table 1
 
@@ -594,6 +551,17 @@ Internet-Draft                   ADDREQ                     October 2020
 
 10.1.  Normative References
 
+
+
+
+
+
+
+Box, et al.                Expires 4 May 2021                  [Page 10]
+
+Internet-Draft                   ADDREQ                     October 2020
+
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -604,19 +572,6 @@ Internet-Draft                   ADDREQ                     October 2020
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
 10.2.  Informative References
-
-
-
-
-
-
-
-
-
-Box, et al.                Expires 3 May 2021                  [Page 11]
-
-Internet-Draft                   ADDREQ                     October 2020
-
 
    [I-D.ietf-capport-architecture]
               Larose, K., Dolson, D., and H. Liu, "Captive Portal
@@ -655,6 +610,14 @@ Internet-Draft                   ADDREQ                     October 2020
               DOI 10.17487/RFC3552, July 2003,
               <https://www.rfc-editor.org/info/rfc3552>.
 
+
+
+
+Box, et al.                Expires 4 May 2021                  [Page 11]
+
+Internet-Draft                   ADDREQ                     October 2020
+
+
    [RFC7858]  Hu, Z., Zhu, L., Heidemann, J., Mankin, A., Wessels, D.,
               and P. Hoffman, "Specification for DNS over Transport
               Layer Security (TLS)", RFC 7858, DOI 10.17487/RFC7858, May
@@ -664,15 +627,6 @@ Internet-Draft                   ADDREQ                     October 2020
               "IPv6 Router Advertisement Options for DNS Configuration",
               RFC 8106, DOI 10.17487/RFC8106, March 2017,
               <https://www.rfc-editor.org/info/rfc8106>.
-
-
-
-
-
-Box, et al.                Expires 3 May 2021                  [Page 12]
-
-Internet-Draft                   ADDREQ                     October 2020
-
 
    [RFC8484]  Hoffman, P. and P. McManus, "DNS Queries over HTTPS
               (DoH)", RFC 8484, DOI 10.17487/RFC8484, October 2018,
@@ -713,6 +667,13 @@ Authors' Addresses
    Email: tpauly@apple.com
 
 
+
+
+Box, et al.                Expires 4 May 2021                  [Page 12]
+
+Internet-Draft                   ADDREQ                     October 2020
+
+
    Christopher A. Wood
    Cloudflare
    101 Townsend St
@@ -720,14 +681,6 @@ Authors' Addresses
    United States of America
 
    Email: caw@heapingbits.net
-
-
-
-
-
-Box, et al.                Expires 3 May 2021                  [Page 13]
-
-Internet-Draft                   ADDREQ                     October 2020
 
 
    Tirumaleswar Reddy
@@ -772,13 +725,4 @@ Internet-Draft                   ADDREQ                     October 2020
 
 
 
-
-
-
-
-
-
-
-
-
-Box, et al.                Expires 3 May 2021                  [Page 14]
+Box, et al.                Expires 4 May 2021                  [Page 13]
