@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-10-18T00:10:30.221282+00:00",
+  "timestamp": "2020-11-01T00:07:09.498348+00:00",
   "repo": "ietf-wg-add/draft-add-requirements",
   "labels": [
     {
@@ -3074,6 +3074,34 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 31,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTEzMzczMDM4",
+      "title": "Clean up requirements list",
+      "url": "https://github.com/ietf-wg-add/draft-add-requirements/pull/31",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Clean up list of requirements (see email feedback for some details).",
+      "createdAt": "2020-10-31T04:49:47Z",
+      "updatedAt": "2020-10-31T08:07:24Z",
+      "baseRepository": "ietf-wg-add/draft-add-requirements",
+      "baseRefName": "master",
+      "baseRefOid": "fe0dfb5e77ecaf87fd69e1da2ea301bccf9fc4e7",
+      "headRepository": "tfpauly/draft-add-requirements",
+      "headRefName": "tfp/cleanup-requirements",
+      "headRefOid": "b56dc576b507e364b60b9c02145750e0dbf63bf7",
+      "closedAt": "2020-10-31T08:07:24Z",
+      "mergedAt": "2020-10-31T08:07:24Z",
+      "mergedBy": "chris-box",
+      "mergeCommit": {
+        "oid": "87315727fe4ca93c8d7dbb772c202978668c31df"
+      },
       "comments": [],
       "reviews": []
     }
