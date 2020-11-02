@@ -117,11 +117,13 @@ Internet-Draft                   ADDREQ                    November 2020
    The Adaptive DNS Discovery (ADD) Working Group is chartered to define
    mechanisms that allow clients to automatically discover and select
    encrypted DNS resolvers in a wide variety of network environments.
-   This document describes one common use case, that of discovering the
-   encrypted DNS resolver that corresponds to the Do53 resolver offered
-   by a network.  It lists requirements that any proposed discovery
-   mechanisms should address.  They can do this either by providing a
-   solution, or by explicitly stating why it is not in scope.
+   This document currently focusses on one common use case, that of
+   discovering the encrypted DNS resolver that corresponds to the Do53
+   resolver offered by a network.  Additional use cases can be added in
+   future versions.  As well as describing the use case, it lists
+   requirements that any proposed discovery mechanisms should address.
+   They can do this either by providing a solution, or by explicitly
+   stating why it is not in scope.
 
 1.1.  Requirements language
 
@@ -154,14 +156,12 @@ Internet-Draft                   ADDREQ                    November 2020
    security risks that were the motivation for the development of
    encrypted DNS.
 
-
-
-
-
-
-
-
-
+   The network's recommended unencrypted resolver may have a number of
+   properties that differ from a generic resolver.  It may be able to
+   answer names that are not known globally, it may exclude some names
+   (for positive or negative reasons), and it may provide address
+   answers that have improved proximity.  In this use case it is assumed
+   that the user who chose to join this network would also like to make
 
 
 
@@ -170,12 +170,6 @@ Box, et al.                Expires 6 May 2021                   [Page 3]
 Internet-Draft                   ADDREQ                    November 2020
 
 
-   The network's recommended unencrypted resolver may have a number of
-   properties that differ from a generic resolver.  It may be able to
-   answer names that are not known globally, it may exclude some names
-   (for positive or negative reasons), and it may provide address
-   answers that have improved proximity.  In this use case it is assumed
-   that the user who chose to join this network would also like to make
    use of these properties of the network's unencrypted resolver, at
    least some of the time.  However they would like to use an encrypted
    DNS protocol rather than Do53.
@@ -218,6 +212,12 @@ Internet-Draft                   ADDREQ                    November 2020
    *  During communication with the (often unencrypted) resolver (A),
       this resolver can claim that one or more encrypted DNS resolvers
       (B, C, etc) are equivalent.  This is known as resolver-identified.
+
+
+
+
+
+
 
 
 
