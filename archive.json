@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-11-03T00:07:28.090656+00:00",
+  "timestamp": "2020-11-08T00:09:35.900857+00:00",
   "repo": "ietf-wg-add/draft-add-requirements",
   "labels": [
     {
@@ -95,7 +95,7 @@
       "id": "MDU6SXNzdWU2OTIxMjA3MDI=",
       "title": "Requirements needed in Discovery of Associated Resolvers (section 3)",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/4",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chris-box",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -106,8 +106,8 @@
       ],
       "body": "At the moment we only have R1.1 and R1.2.",
       "createdAt": "2020-09-03T16:39:35Z",
-      "updatedAt": "2020-10-16T23:40:25Z",
-      "closedAt": null,
+      "updatedAt": "2020-11-06T18:28:50Z",
+      "closedAt": "2020-11-06T18:28:50Z",
       "comments": [
         {
           "author": "JoGSal",
@@ -115,6 +115,13 @@
           "body": "R1.3 There must be a mechanism to authenticate the entity that provides the discovered encrypted DNS resolvers\r\nR1.4 There must be a mechanism for a user to signal to the client how to choose between equivalent and alternative resolvers. ",
           "createdAt": "2020-10-02T01:33:31Z",
           "updatedAt": "2020-10-16T23:40:25Z"
+        },
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Thanks for the good contribution, but as it relates to the former scope which contained alternative resolvers, I'll close this. When a wider scope is resumed in the future something similar may be needed.",
+          "createdAt": "2020-11-06T18:28:50Z",
+          "updatedAt": "2020-11-06T18:28:50Z"
         }
       ]
     },
@@ -123,7 +130,7 @@
       "id": "MDU6SXNzdWU2OTIxMjEzMzI=",
       "title": "Requirements needed in Discovery of Limited Domain Resolvers (section 4)",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/5",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chris-box",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -134,16 +141,24 @@
       ],
       "body": "",
       "createdAt": "2020-09-03T16:40:41Z",
-      "updatedAt": "2020-09-03T16:40:41Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2020-11-06T18:29:34Z",
+      "closedAt": "2020-11-06T18:29:34Z",
+      "comments": [
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Currently descoped.",
+          "createdAt": "2020-11-06T18:29:34Z",
+          "updatedAt": "2020-11-06T18:29:34Z"
+        }
+      ]
     },
     {
       "number": 6,
       "id": "MDU6SXNzdWU2OTIxMjE4NzM=",
       "title": "Requirements needed in Privacy and Security (section 5)",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/6",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chris-box",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -152,9 +167,17 @@
       ],
       "body": "",
       "createdAt": "2020-09-03T16:41:35Z",
-      "updatedAt": "2020-09-03T16:41:35Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2020-11-06T18:30:23Z",
+      "closedAt": "2020-11-06T18:30:22Z",
+      "comments": [
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Populated in draft -01.",
+          "createdAt": "2020-11-06T18:30:22Z",
+          "updatedAt": "2020-11-06T18:30:22Z"
+        }
+      ]
     },
     {
       "number": 7,
@@ -227,7 +250,7 @@
       "id": "MDU6SXNzdWU2OTIxMjk4NDE=",
       "title": "Feasibility of requiring the protocol to prove that the encrypted and unencrypted resolvers are operated by the same entity",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/9",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chris-box",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -236,8 +259,8 @@
       ],
       "body": "How does the client learn the encrypted and unencrypted DNS servers are operated by the same administrative domain ?\r\nThe client can authenticate the encrypted DNS servers but cannot authenticate the unencrypted DNS server !\r\n\r\n_Originally posted by @tireddy2 in https://github.com/ietf-wg-add/draft-add-requirements/pull/2#discussion_r479894603_",
       "createdAt": "2020-09-03T16:54:52Z",
-      "updatedAt": "2020-09-03T16:56:54Z",
-      "closedAt": null,
+      "updatedAt": "2020-11-06T18:33:43Z",
+      "closedAt": "2020-11-06T18:33:43Z",
       "comments": [
         {
           "author": "chris-box",
@@ -245,6 +268,13 @@
           "body": "If it is genuinely impossible to prove association between two resolvers when one resolver is unencrypted, then perhaps we should not have the concept at all. But I'm hoping it is not impossible.",
           "createdAt": "2020-09-03T16:56:54Z",
           "updatedAt": "2020-09-03T16:56:54Z"
+        },
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "draft-pauly-add-deer-00 does this (at least in some circumstances), so it's not impossible.",
+          "createdAt": "2020-11-06T18:33:42Z",
+          "updatedAt": "2020-11-06T18:33:42Z"
         }
       ]
     },
@@ -271,7 +301,7 @@
       "id": "MDU6SXNzdWU2OTIxNjIwMzk=",
       "title": "Import use case description from draft-btw-add-ipsecme-ike-00",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/11",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chris-box",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -280,8 +310,8 @@
       ],
       "body": "You can use the text from https://tools.ietf.org/html/draft-btw-add-ipsecme-ike-00#section-3 to discuss the use cases.\r\n\r\n_Originally posted by @tireddy2 in https://github.com/ietf-wg-add/draft-add-requirements/pull/2#discussion_r477108036_",
       "createdAt": "2020-09-03T17:50:29Z",
-      "updatedAt": "2020-09-03T17:51:27Z",
-      "closedAt": null,
+      "updatedAt": "2020-11-06T18:35:45Z",
+      "closedAt": "2020-11-06T18:35:45Z",
       "comments": [
         {
           "author": "chris-box",
@@ -289,6 +319,13 @@
           "body": "This is for the VPN Resolvers section.",
           "createdAt": "2020-09-03T17:50:52Z",
           "updatedAt": "2020-09-03T17:50:52Z"
+        },
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "VPNs are (for the moment) descoped. If/when they are added back in, we can reopen.",
+          "createdAt": "2020-11-06T18:35:45Z",
+          "updatedAt": "2020-11-06T18:35:45Z"
         }
       ]
     },
@@ -297,7 +334,7 @@
       "id": "MDU6SXNzdWU2OTIxNjQ2ODQ=",
       "title": "Enhance BYOD description",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/12",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chris-box",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -306,9 +343,17 @@
       ],
       "body": "> \r\n> \r\n> No, I don't think that would be right.\r\n> \r\n> I don't think this case is specific to non-MDM devices. Even with MDM devices, devices aren't often configured to know which domains are privately accessible on an enterprise Wi-Fi network. Certainly MDMs could be updated going forward (which wouldn't be possible for pure BYOD cases), but that's not the status quo. Also, if we have a mechanism that works for the pure BYOD case, it wouldn't be necessary to build an MDM-specific solution.\r\n\r\nAgreed, we can say the use case is specific to \"BYOD\" without explicitly saying \"BYOD without MDM\". On a side note, MDM is a secure way of configuring endpoints and a secure mechanism will be required for pure BYOD case to be applicable to MDM. Configuration profile could be another way to securely provision the BYOD without MDM (see https://tools.ietf.org/html/draft-reddy-add-enterprise-00#section-5).\r\n\r\n_Originally posted by @tireddy2 in https://github.com/ietf-wg-add/draft-add-requirements/pull/2#discussion_r478197292_",
       "createdAt": "2020-09-03T17:55:05Z",
-      "updatedAt": "2020-09-03T17:55:24Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2020-11-06T18:37:00Z",
+      "closedAt": "2020-11-06T18:37:00Z",
+      "comments": [
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "This topic is not in the current scope of the draft, so closing for now.",
+          "createdAt": "2020-11-06T18:37:00Z",
+          "updatedAt": "2020-11-06T18:37:00Z"
+        }
+      ]
     },
     {
       "number": 13,
@@ -367,7 +412,7 @@
       ],
       "body": "Two options are presented for discovering an associated resolver:\r\n\r\n1. enhance the discovery process for the resolver to provide secured options in parallel\r\n2. ask the unsecured resolver for its opinion\r\n\r\nThe draft should discuss the consequences of this choice, particularly from the perspective of security.  In the former, any exposure to attack is limited to the discovery method.  However, the latter creates a new point that needs to be secured.\r\n\r\nThis doesn't mean that either is invalid: in many cases these reduce to network operators being able to decide who answers DNS queries, but there are operational differences between securing network configuration and securing DNS resolution that are relevant in some contexts.  We at least need people to be aware of these differences.",
       "createdAt": "2020-09-09T00:17:11Z",
-      "updatedAt": "2020-09-09T08:55:07Z",
+      "updatedAt": "2020-11-06T18:39:26Z",
       "closedAt": null,
       "comments": [
         {
@@ -376,6 +421,13 @@
           "body": "Good point. Text will need to be written.\r\n\r\n\r\n",
           "createdAt": "2020-09-09T08:55:07Z",
           "updatedAt": "2020-09-09T08:55:07Z"
+        },
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "This issue still needs text, but now it would refer to the difference between network-identified (1) and resolver-identified (2).",
+          "createdAt": "2020-11-06T18:39:26Z",
+          "updatedAt": "2020-11-06T18:39:26Z"
         }
       ]
     },
@@ -384,7 +436,7 @@
       "id": "MDU6SXNzdWU2OTYyNzgzNzY=",
       "title": "Limit this to equivalent resolvers",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/17",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinthomson",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -393,8 +445,8 @@
       ],
       "body": "The discussion about resolvers that provide alternative answers is a giant rathole.  We should not build a mechanism for advertising name resolution policies.  That is too complex and filled with questions of policy that are impossible to mechanically evaluate.  Strict equivalence is far simpler to reason about.\r\n\r\nThis working group isn't really chartered to deal with the myriad of reasons that resolvers might choose not to forward an answer that an authoritative server gives them.",
       "createdAt": "2020-09-09T00:24:37Z",
-      "updatedAt": "2020-09-09T09:04:19Z",
-      "closedAt": null,
+      "updatedAt": "2020-11-06T18:40:28Z",
+      "closedAt": "2020-11-06T18:40:28Z",
       "comments": [
         {
           "author": "chris-box",
@@ -402,6 +454,13 @@
           "body": "This will certainly require discussion at the interim. In particular we need providers of more than one resolver to say why discovery of their alternatives is useful and can be implemented without descending into said rathole.",
           "createdAt": "2020-09-09T09:04:19Z",
           "updatedAt": "2020-09-09T09:04:19Z"
+        },
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The draft is now limited to equivalent resolvers.",
+          "createdAt": "2020-11-06T18:40:28Z",
+          "updatedAt": "2020-11-06T18:40:28Z"
         }
       ]
     },
