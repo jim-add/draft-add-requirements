@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-11-08T00:09:35.900857+00:00",
+  "timestamp": "2020-11-10T00:07:24.386386+00:00",
   "repo": "ietf-wg-add/draft-add-requirements",
   "labels": [
     {
@@ -495,7 +495,7 @@
       "id": "MDU6SXNzdWU2OTYyODYwOTE=",
       "title": "Unencrypted forwarders are hardly \"classic\"",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/19",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinthomson",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -504,8 +504,8 @@
       ],
       "body": "The text on DNS forwarders needs to use established nomenclature.  Perhaps \"DNS Proxy\" as used by RFC 5625.",
       "createdAt": "2020-09-09T00:47:43Z",
-      "updatedAt": "2020-09-13T19:25:57Z",
-      "closedAt": null,
+      "updatedAt": "2020-11-09T17:31:39Z",
+      "closedAt": "2020-11-09T17:31:39Z",
       "comments": [
         {
           "author": "chris-box",
@@ -534,6 +534,13 @@
           "body": "Noting the above comments, perhaps \"Do53 forwarder\" would suffice? ",
           "createdAt": "2020-09-13T19:25:57Z",
           "updatedAt": "2020-09-13T19:25:57Z"
+        },
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Draft -01 now uses \"Do53\" and/or \"unencrypted\", together with \"forwarder\" if that is relevant. Closing the issue for now but if the new terminology is still problematic we could reopen.",
+          "createdAt": "2020-11-09T17:31:39Z",
+          "updatedAt": "2020-11-09T17:31:39Z"
         }
       ]
     },
@@ -675,31 +682,39 @@
       "id": "MDU6SXNzdWU2OTYyOTMzNzk=",
       "title": "VPN requirements reduce to nothing",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/23",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinthomson",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "I think that there is just one thing that merits the inclusion of the VPN section: the ability to configure a resolver for only a subset of all names.  But I don't think that introduces any requirements.  The essential choice is the same: between parallel configuration for DoT/DoH or talking to the resolver directly.\r\n\r\nIn other aspects, a VPN is just a network.  The fact that VPN configuration is often strongly authenticated doesn't distinguish it from any other type of network-provided resolver.  I would suggest that we instead acknowledge that VPNs provide another type of network access and configuration methods that might need to be accommodated by parallel discovery methods.",
       "createdAt": "2020-09-09T01:09:01Z",
-      "updatedAt": "2020-09-09T01:09:01Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2020-11-09T17:37:03Z",
+      "closedAt": "2020-11-09T17:37:03Z",
+      "comments": [
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "VPNs are now removed from the scope of draft -01.",
+          "createdAt": "2020-11-09T17:37:03Z",
+          "updatedAt": "2020-11-09T17:37:03Z"
+        }
+      ]
     },
     {
       "number": 24,
       "id": "MDU6SXNzdWU2OTYyOTg5OTQ=",
       "title": "Usefulness of limited domains",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/24",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinthomson",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "Section 4 contains a lot of subsections.  Leaving Section 4.2 (content providers) aside, I can't see any requirement here other than the need to recognize that clients might use a specific resolver for a limited set of names.  I think that this entire section (except 4.2) can be replaced with a sentence and *no* requirements.",
       "createdAt": "2020-09-09T01:18:15Z",
-      "updatedAt": "2020-09-09T02:59:08Z",
-      "closedAt": null,
+      "updatedAt": "2020-11-09T17:39:20Z",
+      "closedAt": "2020-11-09T17:39:20Z",
       "comments": [
         {
           "author": "magicalo",
@@ -707,6 +722,13 @@
           "body": "I think another subsection is needed similar to 4.2 that describes Recursive DNS Security Providers that behave identically to the way that  Content Providers are described in section 4.2.  The only difference being that a security function is being provided as an outcome.  Alternatively, section 4.2 can describe both CDN and DSP scenarios in a combined paragraph if that is preferred.",
           "createdAt": "2020-09-09T02:56:53Z",
           "updatedAt": "2020-09-09T02:59:08Z"
+        },
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Section 4 is now removed from draft -01.",
+          "createdAt": "2020-11-09T17:39:20Z",
+          "updatedAt": "2020-11-09T17:39:20Z"
         }
       ]
     },
@@ -715,31 +737,39 @@
       "id": "MDU6SXNzdWU2OTYzNjEwMjc=",
       "title": "VPNs can also use DNS for routing decisions (section 3.3)",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/25",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "magicalo",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "In addition to scenarios described, VPNs can use DNS for making routing decisions.  So there is a scenario where VPNs need to introspect DNS traffic on both the public and private interfaces in order to make a routing decisions of that traffic.  It is unclear how that capability will continue to function.  (split include / split exclude based on domains) - also known as dynamic split tunneling.",
       "createdAt": "2020-09-09T03:13:16Z",
-      "updatedAt": "2020-09-09T03:13:16Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2020-11-09T17:43:53Z",
+      "closedAt": "2020-11-09T17:43:52Z",
+      "comments": [
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Yes I can see that dynamic split tunneling could be a problem if DNS is encrypted, unless the relevant code is running on the endpoint and has the ability to see the DNS queries before they are encrypted. But I'll close the case for now as draft -01 is simplified and doesn't now consider VPNs.",
+          "createdAt": "2020-11-09T17:43:52Z",
+          "updatedAt": "2020-11-09T17:43:52Z"
+        }
+      ]
     },
     {
       "number": 26,
       "id": "MDU6SXNzdWU2OTc5NDcyNjE=",
       "title": "This should really be two documents",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/26",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "ekr",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "Despite the way it's phrased as \"requirements\" but really there's almost no relationship between the use cases where you want to discover which general-use resolver you might use locally (Section 3) and the use cases where you are might discover which resolvers to use for a specific domain (Section 4). It's not at all obvious that you would want to use the same technology for these. If we are to have a requirements document, we should split these into two, one for each workstream.",
       "createdAt": "2020-09-10T13:16:51Z",
-      "updatedAt": "2020-09-15T09:06:51Z",
-      "closedAt": null,
+      "updatedAt": "2020-11-09T17:51:51Z",
+      "closedAt": "2020-11-09T17:51:51Z",
       "comments": [
         {
           "author": "ekr",
@@ -831,6 +861,13 @@
           "body": "I think it's a good idea to start with single document describing all the requirements and use cases which will be covered. If we split the the document now I see the risk that only some of the requirements will be covered and others not (e.g. if only one the documents is moved forward). Therefore I am more in favour of having a single document as a basis and to move this document forward. Lets have the dicussion now what we want to include and what not.",
           "createdAt": "2020-09-15T09:06:51Z",
           "updatedAt": "2020-09-15T09:06:51Z"
+        },
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Good arguments on both sides. I agree we do need all requirements described somewhere, but we also need small enough drafts so that are manageable and can be reasoned about. On the list Glenn proposed dividing into two or perhaps three. I tend to agree, so draft -01 is now a single use case. This does of course mean that other requirements drafts are also required. Authors of those could of course grab text from draft -00 and relevant closed issues in this repo.",
+          "createdAt": "2020-11-09T17:51:51Z",
+          "updatedAt": "2020-11-09T17:51:51Z"
         }
       ]
     },
@@ -839,16 +876,24 @@
       "id": "MDU6SXNzdWU2OTk4MDc4MzA=",
       "title": "Section 2. Terminology: add definition to terms",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/27",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "JoGSal",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "Taking the definitions in context, one can assume all 3 defined resolvers refer to ones providing Encrypted DNS resolution but then the terms might need to be more explicit, i.e\r\n\r\nAssociated resolver: A resolver [providing connectivity over Encrypted DNS] operated by the same entity...\r\nEquivalent associated resolver: An associated resolver that provides [Encrypted] DNS responses...\r\nAlternative associated resolver: An associated resolver [using Encrypted transports] that serves different responses...",
       "createdAt": "2020-09-11T22:20:41Z",
-      "updatedAt": "2020-09-11T22:20:41Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2020-11-09T17:55:30Z",
+      "closedAt": "2020-11-09T17:55:30Z",
+      "comments": [
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Draft -01 now uses different definitions, but it's still a good question as to whether equivalent resolvers are always encrypted, or whether they could be unencrypted too. If the new draft's wording is not good enough then I suggest to start a new issue based around that text.",
+          "createdAt": "2020-11-09T17:55:30Z",
+          "updatedAt": "2020-11-09T17:55:30Z"
+        }
+      ]
     },
     {
       "number": 28,
@@ -862,25 +907,41 @@
       "labels": [],
       "body": "This can provide several benefits:\r\n\r\n- Validate meaningful user choice where the client's preferred option is enforced through selection mechanisms.",
       "createdAt": "2020-10-16T23:56:43Z",
-      "updatedAt": "2020-10-16T23:56:43Z",
+      "updatedAt": "2020-11-09T18:05:21Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "First time I read this I didn't spot that this was section 3.2, i.e. client-selected resolvers.\r\n\r\nI still don't understand what you mean by \"client's preferred option is enforced through selection mechanisms\" though. Please could you provide an example?",
+          "createdAt": "2020-11-09T17:59:12Z",
+          "updatedAt": "2020-11-09T18:05:21Z"
+        }
+      ]
     },
     {
       "number": 29,
       "id": "MDU6SXNzdWU3MjM1OTI3MDM=",
       "title": "Section 3.2: Add to Requirements",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/29",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "JoGSal",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "- R5.1 If the same entity counts with encrypted services, the Selection mechanisms should default to them.\r\n- R5.2 If no equivalent resolvers are available from the same entity, a disclaimer should be provided to the user where their consent is requested in order to use alternative encrypted resolvers, as user understanding and meaningful choice are vital in this scenario.\r\n- R5.3 A set of rules and standards should be defined for the listing of available resolvers, such as confirming ownership over the encrypted DNS services (google's policy), and maintaining a minimum standard of data handling and management policies (mozilla's policy)\r\n",
       "createdAt": "2020-10-17T00:01:42Z",
-      "updatedAt": "2020-10-17T00:01:42Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2020-11-09T18:03:01Z",
+      "closedAt": "2020-11-09T18:03:01Z",
+      "comments": [
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Thanks for the contribution to the \"Client-selected resolvers\" case. It seems a good start to me. However I'll close the issue as it's no longer in scope of the simplified single use case (draft -01). It would still be useful as part of another document though.",
+          "createdAt": "2020-11-09T18:03:01Z",
+          "updatedAt": "2020-11-09T18:03:01Z"
+        }
+      ]
     },
     {
       "number": 30,
@@ -894,7 +955,33 @@
       "labels": [],
       "body": "The section says:\r\n\"attackers must not be able to: (...) Influence automatic discovery mechanisms such that a client uses one or more resolvers that are not otherwise involved with providing service to the client, such as: (...) a server that the client has manually configured.\"\r\n\r\nWhat is the precise implication for manually configured servers by the client?",
       "createdAt": "2020-10-17T00:05:10Z",
-      "updatedAt": "2020-10-17T00:05:10Z",
+      "updatedAt": "2020-11-09T18:11:18Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "chris-box",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I take this to mean an encrypted DNS server that the user of the client has manually configured, e.g. in browser settings. If my co-authors agree with that interpretation, then you could say it duplicates the second point (\"Override or interfere with the resolver preferences of a user or administrator.\")",
+          "createdAt": "2020-11-09T18:11:18Z",
+          "updatedAt": "2020-11-09T18:11:18Z"
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "id": "MDU6SXNzdWU3MzkyNTUzNjE=",
+      "title": "Limit encrypted DNS protocols to those defined by IETF",
+      "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/32",
+      "state": "OPEN",
+      "author": "chris-box",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "design"
+      ],
+      "body": "     | R1.4        | Discovery SHOULD support all standardised  encrypted DNS protocols.  |\r\n\r\nIt was pointed out that this should be limited to IETF-standardised encrypted DNS protocols rather than potentially including DNSCrypt and being very open-ended.\r\n",
+      "createdAt": "2020-11-09T18:18:51Z",
+      "updatedAt": "2020-11-09T18:18:51Z",
       "closedAt": null,
       "comments": []
     }
