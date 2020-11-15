@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-11-10T00:07:24.386386+00:00",
+  "timestamp": "2020-11-15T00:07:20.298784+00:00",
   "repo": "ietf-wg-add/draft-add-requirements",
   "labels": [
     {
@@ -60,7 +60,7 @@
       "id": "MDU6SXNzdWU2ODQyMTUwMDY=",
       "title": "Setup weekly-digest mailer ",
       "url": "https://github.com/ietf-wg-add/draft-add-requirements/issues/1",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "gitnnelg",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -71,8 +71,8 @@
       ],
       "body": "Setup https://github.com/abhijeetps/weekly-digest/blob/master/docs/configuration.md?installation_id=11404206&setup_action=install to send weekly notices. ",
       "createdAt": "2020-08-23T16:35:34Z",
-      "updatedAt": "2020-09-02T22:48:10Z",
-      "closedAt": null,
+      "updatedAt": "2020-11-14T23:25:59Z",
+      "closedAt": "2020-11-14T23:25:59Z",
       "comments": [
         {
           "author": "gitnnelg",
