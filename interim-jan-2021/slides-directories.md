@@ -28,3 +28,4 @@ Three Parties:
 * Resolvers that are restricted to a subset of names (e.g. one CDN)
 * Grouping related resolvers
 * Enable connection without use of a bootstrap resolver
+ignore this line of idiocy - learning github!
